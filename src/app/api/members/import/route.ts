@@ -61,16 +61,6 @@ export const GET = async () => {
   return Response.json(data);
 };
 
-export const badRequest = (details?: Record<string, unknown> | null) =>
-  NextResponse.json(
-    {
-      message: 'Bad request',
-      status: 400,
-      ...(details ? { details } : {}),
-    },
-    { status: 400 },
-  );
-
 export const POST = async (request: NextRequest) => {
   try {
     const formData = await request.formData();
@@ -78,7 +68,13 @@ export const POST = async (request: NextRequest) => {
     const file = formData.get('file') as Blob | null;
 
     if (!file) {
-      return badRequest();
+      return NextResponse.json(
+        {
+          message: 'Bad request',
+          status: 400,
+        },
+        { status: 400 },
+      );
     }
 
     const workbook = XLSX.read(await file.arrayBuffer(), {
@@ -153,7 +149,6 @@ export const POST = async (request: NextRequest) => {
     return NextResponse.json(response);
   } catch (error) {
     console.error(error);
-    console.log(error.data);
 
     return NextResponse.json(null, { status: 500 });
   }
