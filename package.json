@@ -19,6 +19,15 @@
   "engines": {
     "node": "^18.20.2 || >=20.9.0"
   },
+  "os": [
+    "linux",
+    "darwin"
+  ],
+  "cpu": [
+    "x64",
+    "ia32",
+    "arm64"
+  ],
   "dependencies": {
     "@payloadcms/db-postgres": "3.0.0-beta.65",
     "@payloadcms/next": "3.0.0-beta.65",
@@ -35,7 +44,7 @@
     "payload": "3.0.0-beta.65",
     "react": "19.0.0-rc-6230622a1a-20240610",
     "react-dom": "19.0.0-rc-6230622a1a-20240610",
-    "sharp": "0.32.6",
+    "sharp": "^0.33.4",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
