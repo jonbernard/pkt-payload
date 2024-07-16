@@ -1,16 +1,17 @@
-import { formatSlug, admins, populateAuthors } from '../utils';
 import { CollectionConfig } from 'payload';
 import { Member } from '@payload-types';
+import { admin } from '@/access/admin';
+import { slugField } from '@/fields/slug';
 
 const prefixes = ['Mr', 'Master', 'Miss', 'Mrs', 'Ms', 'Mx', 'Dr', 'Rev', 'Col', 'Cdr', 'Maj', 'Hon', 'Lt'];
 
-export const MemberCollection: CollectionConfig = {
+export const Members: CollectionConfig = {
   slug: 'members',
   access: {
-    create: admins,
-    delete: admins,
-    read: admins,
-    update: admins,
+    create: admin,
+    delete: admin,
+    read: admin,
+    update: admin,
   },
   admin: {
     defaultColumns: ['fullNamePreferred', 'class', 'fullAddress', 'email', 'lost', 'dead', 'createdAt', 'updatedAt'],
@@ -482,18 +483,7 @@ export const MemberCollection: CollectionConfig = {
       type: 'textarea',
       label: 'Notes',
     },
-    {
-      name: 'slug',
-      type: 'text',
-      admin: {
-        position: 'sidebar',
-      },
-      hooks: {
-        beforeValidate: [formatSlug<Member>((member: Member) => `${member?.preferredName || member?.firstName} ${member?.lastName}`)], // , 'email'
-      },
-      index: true,
-      label: 'Slug',
-    },
+    slugField((member: Member) => `${member?.preferredName || member?.firstName} ${member?.lastName}`),
     {
       name: 'user',
       type: 'relationship',
@@ -555,7 +545,7 @@ export const MemberCollection: CollectionConfig = {
     },
   ],
   hooks: {
-    afterRead: [populateAuthors],
+    // afterRead: [populateAuthors],
     // beforeChange: [populatePublishedAt],
   },
 };

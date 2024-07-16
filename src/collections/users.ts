@@ -1,6 +1,6 @@
 import { CollectionConfig } from 'payload';
-import { admins, adminsAndUser, checkRole, ensureFirstUserIsAdmin } from './utils';
-import { AfterChangeHook } from 'node_modules/payload/dist/collections/config/types';
+import { admin, fieldAdmin } from '@/access/admin';
+import { authenticated } from '@/access/authenticated';
 
 // export const loginAfterCreate: AfterChangeHook = async ({
 //   doc,
@@ -30,7 +30,7 @@ import { AfterChangeHook } from 'node_modules/payload/dist/collections/config/ty
 //   return doc
 // }
 
-export const UserCollection: CollectionConfig = {
+export const Users: CollectionConfig = {
   slug: 'users',
   admin: {
     defaultColumns: ['name', 'email'],
@@ -43,10 +43,10 @@ export const UserCollection: CollectionConfig = {
     maxLoginAttempts: 5, // Automatically lock a user out after X amount of failed logins
   },
   access: {
-    admin: ({ req: { user } }) => (user ? checkRole(['admin'], user) : false),
-    delete: admins,
-    read: adminsAndUser,
-    update: adminsAndUser,
+    admin,
+    delete: admin,
+    read: authenticated,
+    update: authenticated,
   },
   fields: [
     {
@@ -57,15 +57,12 @@ export const UserCollection: CollectionConfig = {
       name: 'roles',
       type: 'select',
       access: {
-        create: admins,
-        read: admins,
-        update: admins,
+        create: fieldAdmin,
+        read: fieldAdmin,
+        update: fieldAdmin,
       },
       defaultValue: ['user'],
       hasMany: true,
-      hooks: {
-        beforeChange: [ensureFirstUserIsAdmin],
-      },
       options: [
         {
           label: 'admin',

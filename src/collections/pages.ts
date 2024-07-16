@@ -1,6 +1,6 @@
-import { CollectionConfig } from 'payload'
+import { CollectionConfig } from 'payload';
 
-export const PageCollection: CollectionConfig = {
+export const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
     useAsTitle: 'title',
@@ -15,4 +15,4 @@ export const PageCollection: CollectionConfig = {
       type: 'richText',
     },
   ],
-}
+};

@@ -1,40 +1,46 @@
 import path from 'path';
 import { postgresAdapter } from '@payloadcms/db-postgres';
+// import nodemailerSendgrid from 'nodemailer-sendgrid';
 import { en } from 'payload/i18n/en';
-import {
-  // AlignFeature,
-  // BlockquoteFeature,
-  // BlocksFeature,
-  // BoldFeature,
-  // ChecklistFeature,
-  // HeadingFeature,
-  // IndentFeature,
-  // InlineCodeFeature,
-  // ItalicFeature,
-  lexicalEditor,
-  // LinkFeature,
-  // OrderedListFeature,
-  // ParagraphFeature,
-  // RelationshipFeature,
-  // UnorderedListFeature,
-  // UploadFeature,
-} from '@payloadcms/richtext-lexical';
-//import { slateEditor } from '@payloadcms/richtext-slate'
+import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { buildConfig } from 'payload';
+
 import sharp from 'sharp';
 import { fileURLToPath } from 'url';
-import { UserCollection } from '@/collections/users';
-import { PageCollection } from '@/collections/pages';
-import { MediaCollection } from '@/collections/media';
-import { MemberCollection } from '@/collections/members';
+
+import { Categories } from '@/collections/Categories';
+import { Users } from '@/collections/Users';
+import { Pages } from '@/collections/Pages';
+import { Posts } from '@/collections/Posts';
+import { Media } from '@/collections/Media';
+import { Members } from '@/collections/Members';
+
+import { Logo } from '@/components/graphics/Logo';
+import { Icon } from '@/components/graphics/Icon';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+const sendGridAPIKey = process.env.SENDGRID_API_KEY!;
+
 export default buildConfig({
-  //editor: slateEditor({}),
+  admin: {
+    // Add your own logo and icon here
+    components: {
+      graphics: {
+        Icon,
+        Logo,
+      },
+    },
+    // Add your own meta data here
+    meta: {
+      // favicon: '/assets/favicon.svg',
+      // ogImage: '/assets/ogImage.png',
+      titleSuffix: '- Phi Chapter of the Phi Kappa Tau Fraternity',
+    },
+  },
   editor: lexicalEditor(),
-  collections: [UserCollection, PageCollection, MediaCollection, MemberCollection],
+  collections: [Members, Posts, Pages, Categories, Media, Users],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
@@ -44,21 +50,8 @@ export default buildConfig({
       connectionString: process.env.POSTGRES_URL || '',
     },
   }),
-
-  /**
-   * Payload can now accept specific translations from 'payload/i18n/en'
-   * This is completely optional and will default to English if not provided
-   */
   i18n: {
     supportedLanguages: { en },
-  },
-
-  admin: {
-    autoLogin: {
-      email: 'dev@payloadcms.com',
-      password: 'test',
-      prefillOnly: true,
-    },
   },
   async onInit(payload) {
     const existingUsers = await payload.find({
@@ -72,6 +65,7 @@ export default buildConfig({
         data: {
           email: 'dev@payloadcms.com',
           password: 'test',
+          roles: ['admin', 'user'],
         },
       });
     }
@@ -83,4 +77,15 @@ export default buildConfig({
   // This is temporary - we may make an adapter pattern
   // for this before reaching 3.0 stable
   sharp,
+  // ...(sendGridAPIKey
+  //   ? {
+  //       email: async () => ({
+  //         transportOptions: nodemailerSendgrid({
+  //           apiKey: sendGridAPIKey,
+  //         }),
+  //         fromName: 'Admin',
+  //         fromAddress: 'admin@example.com',
+  //       }),
+  //     }
+  //   : {}),
 });

@@ -88,6 +88,21 @@ export const POST = async (request: NextRequest) => {
 
     const promises = data.map(async (row) => {
       try {
+        const memberExists = await payload.find({
+          collection: 'members',
+          where: {
+            firstName: {
+              equals: row.first || 'unknown',
+            },
+            lastName: {
+              equals: row.last,
+            },
+          },
+        });
+
+        if (memberExists.docs.length > 0) {
+          return;
+        }
         return payload.create({
           collection: 'members',
           data: {
@@ -146,7 +161,7 @@ export const POST = async (request: NextRequest) => {
 
     const response = await Promise.all(promises);
 
-    return NextResponse.json(response);
+    return NextResponse.json(response.filter((item) => Boolean(item)));
   } catch (error) {
     console.error(error);
 
