@@ -1,6 +1,6 @@
-import path from 'path'
-import { postgresAdapter } from '@payloadcms/db-postgres'
-import { en } from 'payload/i18n/en'
+import path from 'path';
+import { postgresAdapter } from '@payloadcms/db-postgres';
+import { en } from 'payload/i18n/en';
 import {
   // AlignFeature,
   // BlockquoteFeature,
@@ -18,18 +18,18 @@ import {
   // RelationshipFeature,
   // UnorderedListFeature,
   // UploadFeature,
-} from '@payloadcms/richtext-lexical'
+} from '@payloadcms/richtext-lexical';
 //import { slateEditor } from '@payloadcms/richtext-slate'
-import { buildConfig } from 'payload'
-import sharp from 'sharp'
-import { fileURLToPath } from 'url'
-import { UserCollection } from '@/collections/users'
-import { PageCollection } from '@/collections/pages'
-import { MediaCollection } from '@/collections/media'
-import { MemberCollection } from '@/collections/members'
+import { buildConfig } from 'payload';
+import sharp from 'sharp';
+import { fileURLToPath } from 'url';
+import { UserCollection } from '@/collections/users';
+import { PageCollection } from '@/collections/pages';
+import { MediaCollection } from '@/collections/media';
+import { MemberCollection } from '@/collections/members';
 
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 export default buildConfig({
   //editor: slateEditor({}),
@@ -41,7 +41,7 @@ export default buildConfig({
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.POSTGRES_URI || '',
+      connectionString: process.env.POSTGRES_URL || '',
     },
   }),
 
@@ -64,7 +64,7 @@ export default buildConfig({
     const existingUsers = await payload.find({
       collection: 'users',
       limit: 1,
-    })
+    });
 
     if (existingUsers.docs.length === 0) {
       await payload.create({
@@ -73,7 +73,7 @@ export default buildConfig({
           email: 'dev@payloadcms.com',
           password: 'test',
         },
-      })
+      });
     }
   },
   // Sharp is now an optional dependency -
@@ -83,4 +83,4 @@ export default buildConfig({
   // This is temporary - we may make an adapter pattern
   // for this before reaching 3.0 stable
   sharp,
-})
+});
