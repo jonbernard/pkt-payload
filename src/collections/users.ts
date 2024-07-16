@@ -1,34 +1,34 @@
-import { CollectionConfig } from 'payload'
-import { admins, adminsAndUser, checkRole, ensureFirstUserIsAdmin } from './utils'
-import { AfterChangeHook } from 'node_modules/payload/dist/collections/config/types'
+import { CollectionConfig } from 'payload';
+import { admins, adminsAndUser, checkRole, ensureFirstUserIsAdmin } from './utils';
+import { AfterChangeHook } from 'node_modules/payload/dist/collections/config/types';
 
-export const loginAfterCreate: AfterChangeHook = async ({
-  doc,
-  operation,
-  req,
-  req: { body = {}, payload, res },
-}) => {
-  if (operation === 'create' && !req.user) {
-    const { email, password } = body
+// export const loginAfterCreate: AfterChangeHook = async ({
+//   doc,
+//   operation,
+//   req,
+//   req: { body = {}, payload, res },
+// }) => {
+//   if (operation === 'create' && !req.user) {
+//     const { email, password } = body
 
-    if (email && password) {
-      const { token, user } = await payload.login({
-        collection: 'users',
-        data: { email, password },
-        req,
-        res,
-      })
+//     if (email && password) {
+//       const { token, user } = await payload.login({
+//         collection: 'users',
+//         data: { email, password },
+//         req,
+//         res,
+//       })
 
-      return {
-        ...doc,
-        token,
-        user,
-      }
-    }
-  }
+//       return {
+//         ...doc,
+//         token,
+//         user,
+//       }
+//     }
+//   }
 
-  return doc
-}
+//   return doc
+// }
 
 export const UserCollection: CollectionConfig = {
   slug: 'users',
@@ -43,7 +43,7 @@ export const UserCollection: CollectionConfig = {
     maxLoginAttempts: 5, // Automatically lock a user out after X amount of failed logins
   },
   access: {
-    admin: ({ req: { user } }) => checkRole(['admin'], user),
+    admin: ({ req: { user } }) => (user ? checkRole(['admin'], user) : false),
     delete: admins,
     read: adminsAndUser,
     update: adminsAndUser,
@@ -78,8 +78,8 @@ export const UserCollection: CollectionConfig = {
       ],
     },
   ],
-  hooks: {
-    afterChange: [loginAfterCreate],
-  },
+  // hooks: {
+  //   afterChange: [loginAfterCreate],
+  // },
   timestamps: true,
-}
+};

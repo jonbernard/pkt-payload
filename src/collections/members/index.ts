@@ -1,7 +1,4 @@
-import toPairs from 'lodash/toPairs';
-
-// import states from './states.json' with { type: "json" }
-import { formatSlug, admins, populateAuthors, populatePublishedAt } from '../utils';
+import { formatSlug, admins, populateAuthors } from '../utils';
 import { CollectionConfig } from 'payload';
 import { Member } from '@payload-types';
 
@@ -559,6 +556,6 @@ export const MemberCollection: CollectionConfig = {
   ],
   hooks: {
     afterRead: [populateAuthors],
-    beforeChange: [populatePublishedAt],
+    // beforeChange: [populatePublishedAt],
   },
 };
