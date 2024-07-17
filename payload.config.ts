@@ -8,15 +8,15 @@ import { buildConfig } from 'payload';
 import sharp from 'sharp';
 import { fileURLToPath } from 'url';
 
-import { Categories } from '@/collections/Categories';
-import { Users } from '@/collections/Users';
-import { Pages } from '@/collections/Pages';
-import { Posts } from '@/collections/Posts';
-import { Media } from '@/collections/Media';
-import { Members } from '@/collections/Members';
+import { Categories } from './src/collections/Categories';
+import { Users } from './src/collections/Users';
+import { Pages } from './src/collections/Pages';
+import { Posts } from './src/collections/Posts';
+import { Media } from './src/collections/Media';
+import { Members } from './src/collections/Members';
 
-import { Logo } from '@/components/graphics/Logo';
-import { Icon } from '@/components/graphics/Icon';
+import { Logo } from './src/components/graphics/Logo';
+import { Icon } from './src/components/graphics/Icon';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
