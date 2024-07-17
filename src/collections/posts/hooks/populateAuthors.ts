@@ -1,4 +1,4 @@
-import type { CollectionAfterReadHook } from 'payload'
+import type { CollectionAfterReadHook } from 'payload';
 
 // The `user` collection has access control locked so that users are not publicly accessible
 // This means that we need to populate the authors manually here to protect user privacy
@@ -8,20 +8,20 @@ export const populateAuthors: CollectionAfterReadHook = async ({ doc, req: { pay
   if (doc?.authors) {
     const authorDocs = await Promise.all(
       doc.authors.map(
-        async (author) =>
+        async (author: any) =>
           await payload.findByID({
             id: typeof author === 'object' ? author?.id : author,
             collection: 'users',
             depth: 0,
           }),
       ),
-    )
+    );
 
     doc.populatedAuthors = authorDocs.map((authorDoc) => ({
       id: authorDoc.id,
       name: authorDoc.name,
-    }))
+    }));
   }
 
-  return doc
-}
+  return doc;
+};
