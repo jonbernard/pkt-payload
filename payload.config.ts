@@ -8,12 +8,12 @@ import { buildConfig } from 'payload';
 import sharp from 'sharp';
 import { fileURLToPath } from 'url';
 
-import { Categories } from '@/collection/categories';
-import { Users } from '@/collection/users';
-import { Pages } from '@/collection/pages';
-import { Posts } from '@/collection/posts';
-import { Media } from '@/collection/media';
-import { Members } from '@/collection/members';
+import { Categories } from '@/collections/categories';
+import { Users } from '@/collections/users';
+import { Pages } from '@/collections/pages';
+import { Posts } from '@/collections/posts';
+import { Media } from '@/collections/media';
+import { Members } from '@/collections/members';
 
 import { Logo } from '@/components/graphics/Logo';
 import { Icon } from '@/components/graphics/Icon';
