@@ -13,7 +13,7 @@ This repo showcases a demo of the Payload 3.0 Beta running completely within Nex
 
 ### Highlights
 
-1. Payload is now Next.js-native
+1. Payload is now Next.js-nativ
 1. Turbopack works out of the box (this will get faster over time, expect more here)
 1. The Payload admin UI is built with React Server Components and automatically eliminates server-side code from your admin bundle, completely alleviating the need to use Webpack aliases to remove hooks, access control, etc.
 1. Payload is now fully-ESM across the board
