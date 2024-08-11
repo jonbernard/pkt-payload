@@ -82,6 +82,9 @@ importers:
       '@types/node':
         specifier: ^20.14.9
         version: 20.14.10
+      '@types/nodemailer':
+        specifier: ^6.4.15
+        version: 6.4.15
       '@types/nodemailer-sendgrid':
         specifier: ^1.0.3
         version: 1.0.3
