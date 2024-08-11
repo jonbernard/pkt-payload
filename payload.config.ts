@@ -3,6 +3,7 @@ import { postgresAdapter } from '@payloadcms/db-postgres';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { en } from 'payload/i18n/en';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
+import nodemailerSendgrid from 'nodemailer-sendgrid';
 import { buildConfig } from 'payload';
 
 import sharp from 'sharp';
@@ -41,6 +42,18 @@ export default buildConfig({
   },
   editor: lexicalEditor(),
   collections: [Members, Posts, Pages, Categories, Media, Users],
+  ...(sendGridAPIKey
+    ? {
+        email: {
+          // @ts-ignore
+          transportOptions: nodemailerSendgrid({
+            apiKey: sendGridAPIKey,
+          }),
+          fromName: 'Phi Chapter of Phi Kappa Tau',
+          fromAddress: 'email@pktphichapter.org',
+        },
+      }
+    : {}),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
