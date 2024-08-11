@@ -13,37 +13,36 @@
     "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
     "ci": "payload migrate && yarn build",
     "generate:types": "payload generate:types",
-    "generate:schema": "payload-graphql generate:schema",
     "standalone-script": "node ./src/scripts/standalone-script.js"
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0"
   },
   "dependencies": {
-    "@payloadcms/db-postgres": "3.0.0-beta.65",
-    "@payloadcms/next": "3.0.0-beta.65",
-    "@payloadcms/richtext-lexical": "3.0.0-beta.65",
-    "@payloadcms/richtext-slate": "3.0.0-beta.65",
-    "@payloadcms/ui": "3.0.0-beta.65",
+    "@payloadcms/db-postgres": "3.0.0-beta.77",
+    "@payloadcms/next": "3.0.0-beta.77",
+    "@payloadcms/richtext-lexical": "3.0.0-beta.77",
+    "@payloadcms/richtext-slate": "3.0.0-beta.77",
+    "@payloadcms/storage-vercel-blob": "3.0.0-beta.77",
+    "@payloadcms/ui": "3.0.0-beta.77",
     "@swc/core": "^1.6.13",
     "babel-plugin-react-compiler": "^0.0.0-experimental-592953e-20240517",
     "cross-env": "^7.0.3",
-    "graphql": "^16.8.2",
     "lodash": "^4.17.21",
     "luxon": "^3.4.4",
-    "next": "15.0.0-canary.58",
+    "next": "15.0.0-canary.104",
     "nodemailer-sendgrid": "^1.0.3",
-    "payload": "3.0.0-beta.65",
+    "payload": "3.0.0-beta.77",
     "react": "19.0.0-rc-6230622a1a-20240610",
     "react-dom": "19.0.0-rc-6230622a1a-20240610",
     "sharp": "0.32.0",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@payloadcms/graphql": "3.0.0-beta.65",
     "@types/lodash": "^4.17.7",
     "@types/luxon": "^3.4.2",
     "@types/node": "^20.14.9",
+    "@types/nodemailer-sendgrid": "^1.0.3",
     "@types/react": "npm:types-react@19.0.0-rc.0",
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.0",
     "autoprefixer": "^10.4.19",
@@ -51,7 +50,7 @@
     "eslint-config-next": "15.0.0-rc.0",
     "postcss": "^8.4.39",
     "tailwindcss": "^3.4.5",
-    "typescript": "5.5.3"
+    "typescript": "5.5.4"
   },
   "pnpm": {
     "overrides": {

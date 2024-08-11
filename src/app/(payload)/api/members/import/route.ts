@@ -2,9 +2,11 @@ import * as XLSX from 'xlsx';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import configPromise from '@payload-config';
 import { NextRequest, NextResponse } from 'next/server';
-import { filter, isNumber, uniq } from 'lodash';
+import { isNumber } from 'lodash';
+
 import { Member } from '@payload-types';
 import { DateTime } from 'luxon';
+import { cookies } from 'next/headers';
 
 type ImportRow = {
   pref?: string;
@@ -55,7 +57,7 @@ const payload = await getPayloadHMR({
 
 export const GET = async () => {
   const data = await payload.find({
-    collection: 'users',
+    collection: 'members',
   });
 
   return Response.json(data);
@@ -64,10 +66,11 @@ export const GET = async () => {
 export const POST = async (request: NextRequest) => {
   try {
     const formData = await request.formData();
+    const cookieStore = cookies();
 
     const file = formData.get('file') as Blob | null;
 
-    if (!file) {
+    if (!file || cookieStore.get('API_KEY')?.value !== process.env.API_KEY) {
       return NextResponse.json(
         {
           message: 'Bad request',

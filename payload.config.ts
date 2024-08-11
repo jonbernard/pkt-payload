@@ -1,6 +1,6 @@
 import path from 'path';
 import { postgresAdapter } from '@payloadcms/db-postgres';
-// import nodemailerSendgrid from 'nodemailer-sendgrid';
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { en } from 'payload/i18n/en';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { buildConfig } from 'payload';
@@ -70,22 +70,13 @@ export default buildConfig({
       });
     }
   },
-  // Sharp is now an optional dependency -
-  // if you want to resize images, crop, set focal point, etc.
-  // make sure to install it and pass it to the config.
-
-  // This is temporary - we may make an adapter pattern
-  // for this before reaching 3.0 stable
   sharp,
-  // ...(sendGridAPIKey
-  //   ? {
-  //       email: async () => ({
-  //         transportOptions: nodemailerSendgrid({
-  //           apiKey: sendGridAPIKey,
-  //         }),
-  //         fromName: 'Admin',
-  //         fromAddress: 'admin@example.com',
-  //       }),
-  //     }
-  //   : {}),
+  plugins: [
+    vercelBlobStorage({
+      collections: {
+        [Media.slug]: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    }),
+  ],
 });
