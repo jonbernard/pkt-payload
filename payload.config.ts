@@ -3,7 +3,6 @@ import { postgresAdapter } from '@payloadcms/db-postgres';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { en } from 'payload/i18n/en';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
-import nodemailerSendgrid from 'nodemailer-sendgrid';
 import { buildConfig } from 'payload';
 
 import sharp from 'sharp';
@@ -22,8 +21,9 @@ import { Icon } from '@/components/graphics/Icon';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
-const sendGridAPIKey = process.env.SENDGRID_API_KEY!;
+// const sendGridAPIKey = process.env.SENDGRID_API_KEY!;
 
+// ts-ignore
 export default buildConfig({
   admin: {
     // Add your own logo and icon here
@@ -42,18 +42,6 @@ export default buildConfig({
   },
   editor: lexicalEditor(),
   collections: [Members, Posts, Pages, Categories, Media, Users],
-  ...(sendGridAPIKey
-    ? {
-        email: {
-          // @ts-ignore
-          transportOptions: nodemailerSendgrid({
-            apiKey: sendGridAPIKey,
-          }),
-          fromName: 'Phi Chapter of Phi Kappa Tau',
-          fromAddress: 'email@pktphichapter.org',
-        },
-      }
-    : {}),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
