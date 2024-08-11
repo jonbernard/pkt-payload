@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.0.0-beta.77",
+    "@payloadcms/email-nodemailer": "3.0.0-beta.29",
     "@payloadcms/next": "3.0.0-beta.77",
     "@payloadcms/richtext-lexical": "3.0.0-beta.77",
     "@payloadcms/richtext-slate": "3.0.0-beta.77",
@@ -31,6 +32,7 @@
     "lodash": "^4.17.21",
     "luxon": "^3.4.4",
     "next": "15.0.0-canary.104",
+    "nodemailer": "^6.9.14",
     "nodemailer-sendgrid": "^1.0.3",
     "payload": "3.0.0-beta.77",
     "react": "19.0.0-rc-6230622a1a-20240610",
