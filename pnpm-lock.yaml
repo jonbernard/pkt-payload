@@ -16,8 +16,8 @@ importers:
         specifier: 3.0.0-beta.77
         version: 3.0.0-beta.77(@libsql/client@0.5.6)(payload@3.0.0-beta.77(@swc/core@1.6.13(@swc/helpers@0.5.12))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.4))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0)
       '@payloadcms/email-nodemailer':
-        specifier: 3.0.0-beta.29
-        version: 3.0.0-beta.29(payload@3.0.0-beta.77(@swc/core@1.6.13(@swc/helpers@0.5.12))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.4))
+        specifier: 3.0.0-beta.77
+        version: 3.0.0-beta.77(payload@3.0.0-beta.77(@swc/core@1.6.13(@swc/helpers@0.5.12))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.4))
       '@payloadcms/next':
         specifier: 3.0.0-beta.77
         version: 3.0.0-beta.77(graphql@16.9.0)(monaco-editor@0.50.0)(next@15.0.0-canary.104(babel-plugin-react-compiler@0.0.0-experimental-696af53-20240625)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.77(@swc/core@1.6.13(@swc/helpers@0.5.12))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0)(typescript@5.5.4)
@@ -974,11 +974,11 @@ packages:
     peerDependencies:
       payload: 3.0.0-beta.77
 
-  '@payloadcms/email-nodemailer@3.0.0-beta.29':
-    resolution: {integrity: sha512-8BqO7IynE84D7RH+0pX+5G1DNbseCEkWWEcmFD5aPOAGGhb0x+DcLu99JKg2CNiNzSNEyVmh5WYBPRql+mILFg==}
-    engines: {node: '>=18.20.2'}
+  '@payloadcms/email-nodemailer@3.0.0-beta.77':
+    resolution: {integrity: sha512-YhQ79S3gad9MliypchQuQuPcQMNeK1xD2cx9OEt8c6lql5aZ+Jv4FcdRVl5pa1jVShFEO2mpi76wgLcjEOVuVg==}
+    engines: {node: ^18.20.2 || >=20.9.0}
     peerDependencies:
-      payload: 3.0.0-beta.29
+      payload: 3.0.0-beta.77
 
   '@payloadcms/graphql@3.0.0-beta.77':
     resolution: {integrity: sha512-Lm+R3WEbBeeQ664Rx//eZ7Z9sDM+Xn5Szgh72ly9CaKyNetod8/XlTxcHrK7G1NragLiU4XRYYpSdx95NBKTcg==}
@@ -4851,7 +4851,7 @@ snapshots:
       - sql.js
       - sqlite3
 
-  '@payloadcms/email-nodemailer@3.0.0-beta.29(payload@3.0.0-beta.77(@swc/core@1.6.13(@swc/helpers@0.5.12))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.4))':
+  '@payloadcms/email-nodemailer@3.0.0-beta.77(payload@3.0.0-beta.77(@swc/core@1.6.13(@swc/helpers@0.5.12))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.4))':
     dependencies:
       nodemailer: 6.9.10
       payload: 3.0.0-beta.77(@swc/core@1.6.13(@swc/helpers@0.5.12))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.4)
