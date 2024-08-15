@@ -1,5 +1,3 @@
-'use client';
-
 import { Jost } from 'next/font/google';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 
@@ -13,8 +11,16 @@ import 'node_modules/react-modal-video/css/modal-video.css';
 
 import { Providers } from './providers';
 import './styles/index.css';
+import type { Metadata } from 'next';
 
 const jost = Jost({ subsets: ['latin'] });
+
+export const metadata: Metadata = {
+  title: 'Phi Chapter of the Phi Kappa Tau Fraternity',
+  description:
+    "Phi Chapter has a long and proud history of enhancing the education of the young men of Bethany College in Bethany, West Virginia, with the unique experience that only a fraternity with 'a mark of distinction' can provide.",
+  // other metadata
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -32,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Header />
               {children}
               <Footer />
-              <ScrollToTop />
+              {/* <ScrollToTop /> */}
             </Providers>
           </ThemeProvider>
         </AppRouterCacheProvider>

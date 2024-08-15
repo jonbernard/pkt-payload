@@ -57,7 +57,7 @@ const Header = () => {
                 alignItems="center"
                 spacing={2}
                 href="/"
-                className={`header-logo block w-full ${sticky ? 'py-5 lg:py-2' : 'py-8'} `}
+                className={`header-logo w-full ${sticky ? 'py-5 lg:py-2' : 'py-8'} `}
               >
                 <Image src="/coa.png" alt="logo" width={40} height={40} />
                 <span className="whitespace-nowrap font-semibold text-2xl">Phi Chapter of Phi Kappa Tau</span>
