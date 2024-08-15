@@ -3,9 +3,9 @@
 import { Jost } from 'next/font/google';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 
-import Footer from '@/app/components/Footer';
-import Header from '@/app/components/Header';
-import ScrollToTop from '@/app/components/ScrollToTop';
+import Footer from '@app/components/Footer';
+import Header from '@app/components/Header';
+import ScrollToTop from '@app/components/ScrollToTop';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme';
 

@@ -18,8 +18,8 @@ import { Posts } from '@/collections/posts';
 import { Media } from '@/collections/media';
 import { Members } from '@/collections/members';
 
-import { Logo } from '@/components/graphics/Logo';
-import { Icon } from '@/components/graphics/Icon';
+import { Logo } from '@payload/components/graphics/Logo';
+import { Icon } from '@payload/components/graphics/Icon';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);

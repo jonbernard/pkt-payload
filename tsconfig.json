@@ -20,7 +20,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/app/*": ["./src/app/(app)/*"],
+      "@app/*": ["./src/app/(app)/*"],
+      "@payload/*": ["./src/app//(payload)/*"],
       "@payload-config": ["./payload.config.ts"],
       "@payload-types": ["./payload-types.ts"]
     },
