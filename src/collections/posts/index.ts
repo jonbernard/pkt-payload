@@ -1,7 +1,13 @@
 import type { CollectionConfig } from 'payload';
 
-import { FixedToolbarFeature, HeadingFeature, HorizontalRuleFeature, InlineToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
-import { BlocksFeature } from '@payloadcms/richtext-lexical';
+import {
+  FixedToolbarFeature,
+  HeadingFeature,
+  HorizontalRuleFeature,
+  InlineToolbarFeature,
+  lexicalEditor,
+  BlocksFeature,
+} from '@payloadcms/richtext-lexical';
 
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished';
 import { Banner } from '../../blocks/Banner';
@@ -35,6 +41,11 @@ export const Posts: CollectionConfig = {
     useAsTitle: 'title',
   },
   fields: [
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+    },
     {
       type: 'tabs',
       tabs: [
@@ -94,14 +105,6 @@ export const Posts: CollectionConfig = {
       ],
     },
     {
-      name: 'title',
-      type: 'text',
-      admin: {
-        position: 'sidebar',
-      },
-      required: true,
-    },
-    {
       name: 'publishedAt',
       type: 'date',
       admin: {
@@ -119,6 +122,18 @@ export const Posts: CollectionConfig = {
             return value;
           },
         ],
+      },
+    },
+    {
+      name: 'image',
+      type: 'upload',
+      label: 'Preview image',
+      admin: {
+        position: 'sidebar',
+      },
+      relationTo: 'media',
+      filterOptions: {
+        mimeType: { contains: 'image' },
       },
     },
     {

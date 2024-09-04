@@ -14,7 +14,7 @@ if [ "$(docker ps -q -f name=$DB_CONTAINER_NAME)" ]; then
 fi
 
 set -a
-source .env
+source .env.local
 
 DB_PASSWORD=$(echo $DATABASE_URL | awk -F':' '{print $3}' | awk -F'@' '{print $1}')
 

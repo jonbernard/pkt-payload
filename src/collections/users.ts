@@ -35,6 +35,7 @@ export const Users: CollectionConfig = {
   admin: {
     defaultColumns: ['name', 'email'],
     useAsTitle: 'name',
+    listSearchableFields: ['name', 'email'],
   },
   auth: {
     tokenExpiration: 7 * 24 * 60 * 60, // How many seconds to keep the user logged in (604800 = 7 days)
@@ -73,6 +74,18 @@ export const Users: CollectionConfig = {
           value: 'user',
         },
       ],
+    },
+    {
+      name: 'member',
+      type: 'relationship',
+      label: 'Member',
+      relationTo: 'members',
+    },
+    {
+      name: 'image',
+      type: 'relationship',
+      label: 'Image',
+      relationTo: 'media',
     },
   ],
   // hooks: {

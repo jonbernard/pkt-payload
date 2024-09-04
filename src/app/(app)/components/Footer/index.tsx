@@ -1,13 +1,13 @@
 'use client';
 
-import { Stack } from '@mui/material';
+import { Container, Stack } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const Footer = () => {
   return (
     <footer className="wow fadeInUp dark:bg-gray-dark relative z-10 bg-white py-16 md:py-20 lg:py-24" data-wow-delay=".1s">
-      <div className="container">
+      <Container maxWidth="lg">
         <div className="h-px w-full bg-gradient-to-r from-transparent via-[#D2D8E183] to-transparent dark:via-[#959CB183] mb-12"></div>
 
         <div className="-mx-4 flex flex-wrap">
@@ -122,7 +122,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-      </div>
+      </Container>
       <div className="absolute bottom-4 right-0 z-[-1] opacity-20 dark:opacity-5">
         <Image src="/letters-red.png" alt="logo" width={400} height={40} className="dark:hidden" />
         <Image src="/letters-white.png" alt="logo" width={400} height={40} className="hidden dark:block" />

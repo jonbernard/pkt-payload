@@ -17,7 +17,6 @@ type Args = {
 export const generateMetadata = ({ params, searchParams }: Args): Promise<Metadata> => generatePageMetadata({ config, params, searchParams });
 
 const Page = async ({ params, searchParams }: Args) => {
-  // console.log('JB | Page | { config, params, searchParams }:', { config, params, searchParams });
   return RootPage({ config, params, searchParams });
 };
 

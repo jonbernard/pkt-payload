@@ -1,6 +1,5 @@
-import { Button } from '@mui/material';
+import { Button, Container } from '@mui/material';
 import Image from 'next/image';
-import Link from 'next/link';
 
 const Hero = () => {
   return (
@@ -9,7 +8,7 @@ const Hero = () => {
         id="home"
         className="dark:bg-gray-dark relative z-10 overflow-hidden bg-white pb-16 pt-[140px] md:pb-[120px] md:pt-[240px] xl:pb-[160px] xl:pt-[240px] 2xl:pb-[200px] 2xl:pt-[280px]"
       >
-        <div className="container">
+        <Container maxWidth="lg">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4">
               <div className="wow fadeInUp mx-auto max-w-[800px] text-center" data-wow-delay=".2s">
@@ -31,9 +30,9 @@ const Hero = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="absolute right-0 top-0 lg:-top-[200px] z-[-1] opacity-10 dark:opacity-5 scale-50 lg:scale-100 origin-top-right">
-          <Image src="/coa.png" alt="blob" width={800} height={800} />
+        </Container>
+        <div className="absolute right-0 top-0 lg:-top-[200px] z-[-1] opacity-10 dark:opacity-10 scale-50 lg:scale-100 origin-top-right">
+          <Image src="/coa.png" alt="blob" width={800} height={800} className="animate-in fade-in duration-700" />
         </div>
       </section>
     </>

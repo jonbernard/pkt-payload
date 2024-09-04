@@ -21,6 +21,7 @@ export const Members: CollectionConfig = {
       )}&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`;
     },
     useAsTitle: 'fullNamePreferred',
+    listSearchableFields: ['firstName', 'lastName', 'fullNamePreferred', 'email'],
   },
   fields: [
     {
@@ -64,28 +65,34 @@ export const Members: CollectionConfig = {
           label: 'Last name',
           required: true,
         },
-        {
-          name: 'suffix',
-          type: 'text',
-          admin: {
-            width: '10%',
-          },
-          label: 'Suffix',
-        },
       ],
     },
     {
       type: 'row',
       fields: [
         {
+          name: 'suffix',
+          type: 'text',
+          admin: {
+            width: '30%',
+          },
+          label: 'Suffix',
+        },
+        {
           name: 'preferredName',
           type: 'text',
           label: 'Preferred name',
+          admin: {
+            width: '30%',
+          },
         },
         {
           name: 'nickname',
           type: 'text',
           label: 'Nickname',
+          admin: {
+            width: '30%',
+          },
         },
       ],
     },
@@ -492,6 +499,15 @@ export const Members: CollectionConfig = {
       },
       label: 'User',
       relationTo: 'users',
+    },
+    {
+      name: 'image',
+      type: 'relationship',
+      label: 'Image',
+      relationTo: 'media',
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       name: 'spouse',

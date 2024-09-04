@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import ThemeToggler from './ThemeToggler';
 import menuData from './menuData';
-import { Stack } from '@mui/material';
+import { Container, Stack } from '@mui/material';
 
 const Header = () => {
   // Navbar toggle
@@ -48,7 +48,7 @@ const Header = () => {
             : 'absolute bg-transparent'
         }`}
       >
-        <div className="container">
+        <Container maxWidth="lg">
           <div className="relative -mx-4 flex items-center justify-between">
             <div className="px-4 xl:mr-12">
               <Stack
@@ -164,7 +164,7 @@ const Header = () => {
               </div> */}
             </div>
           </div>
-        </div>
+        </Container>
       </header>
     </>
   );

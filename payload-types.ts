@@ -116,6 +116,7 @@ export interface Member {
   notes?: string | null;
   slug?: string | null;
   user?: (number | null) | User;
+  image?: (number | null) | Media;
   spouse?: Partner;
   children?: Children;
   updatedAt: string;
@@ -138,6 +139,8 @@ export interface User {
   id: number;
   name?: string | null;
   roles?: ('admin' | 'user')[] | null;
+  member?: (number | null) | Member;
+  image?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -151,10 +154,30 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  text?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts".
  */
 export interface Post {
   id: number;
+  title: string;
   content: {
     root: {
       type: string;
@@ -172,8 +195,8 @@ export interface Post {
   };
   relatedPosts?: (number | Post)[] | null;
   categories?: (number | Category)[] | null;
-  title: string;
   publishedAt?: string | null;
+  image?: number | Media | null;
   authors?: (number | User)[] | null;
   populatedAuthors?:
     | {
@@ -220,25 +243,6 @@ export interface Page {
   } | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: number;
-  text?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

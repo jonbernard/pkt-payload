@@ -11,6 +11,9 @@
     }
   ],
   "settings": {
-    "cSpell.words": ["payloadcms", "sendgrid"]
+    "cSpell.words": ["payloadcms", "sendgrid"],
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
   }
 }
