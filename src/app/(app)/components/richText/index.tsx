@@ -11,7 +11,7 @@ import Relationship from './relationship';
 import Quote from './quote';
 import FileComponent from './file';
 
-const Content = async ({ data }: { data: SerializedLexicalNode }) => {
+const Content = ({ data }: { data: SerializedLexicalNode }) => {
   if (data.type === 'paragraph') return <Paragraph {...data} />;
   if (data.type === 'block' && data.fields.blockType === 'banner') return <Banner {...data} />;
   if (data.type === 'horizontalrule') return <HorizontalRule {...data} />;

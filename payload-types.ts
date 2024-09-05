@@ -193,7 +193,19 @@ export interface Post {
     };
     [k: string]: unknown;
   };
-  relatedPosts?: (number | Post)[] | null;
+  description?: string | null;
+  related?:
+    | (
+        | {
+            relationTo: 'pages';
+            value: number | Page;
+          }
+        | {
+            relationTo: 'posts';
+            value: number | Post;
+          }
+      )[]
+    | null;
   categories?: (number | Category)[] | null;
   publishedAt?: string | null;
   image?: number | Media | null;
@@ -211,22 +223,13 @@ export interface Post {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
- */
-export interface Category {
-  id: number;
-  title?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages".
  */
 export interface Page {
   id: number;
-  title?: string | null;
-  content?: {
+  title: string;
+  shortTitle: string;
+  content: {
     root: {
       type: string;
       children: {
@@ -240,7 +243,34 @@ export interface Page {
       version: number;
     };
     [k: string]: unknown;
-  } | null;
+  };
+  related?:
+    | (
+        | {
+            relationTo: 'pages';
+            value: number | Page;
+          }
+        | {
+            relationTo: 'posts';
+            value: number | Post;
+          }
+      )[]
+    | null;
+  description?: string | null;
+  categories?: (number | Category)[] | null;
+  slug: string;
+  publishedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: number;
+  title?: string | null;
   updatedAt: string;
   createdAt: string;
 }

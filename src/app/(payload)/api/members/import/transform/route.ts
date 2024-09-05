@@ -1,12 +1,11 @@
 import * as XLSX from 'xlsx';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
-import configPromise from '@payload-config';
 import { NextRequest, NextResponse } from 'next/server';
 import { isNumber } from 'lodash';
 
 import { Member } from '@payload-types';
 import { DateTime } from 'luxon';
 import { cookies } from 'next/headers';
+import { getPayload } from '@/app/(app)/utils';
 
 type ImportRow = {
   pref?: string;
@@ -51,9 +50,7 @@ const getDate = (date: Date | string) => {
   return DateTime.fromFormat(date as string, 'd/M/yyyy').toISO();
 };
 
-const payload = await getPayloadHMR({
-  config: configPromise,
-});
+const payload = await getPayload();
 
 export const GET = async () => {
   const data = await payload.find({

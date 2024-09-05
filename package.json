@@ -29,6 +29,7 @@
     "@mui/material-nextjs": "^5.16.6",
     "@payloadcms/db-postgres": "3.0.0-beta.77",
     "@payloadcms/email-nodemailer": "3.0.0-beta.77",
+    "@payloadcms/live-preview-react": "3.0.0-beta.77",
     "@payloadcms/next": "3.0.0-beta.77",
     "@payloadcms/richtext-lexical": "3.0.0-beta.77",
     "@payloadcms/richtext-slate": "3.0.0-beta.77",

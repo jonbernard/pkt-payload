@@ -1,29 +1,28 @@
 import React, { cache } from 'react';
-import { isNumber } from 'lodash';
 import { notFound } from 'next/navigation';
+import { isNumber } from 'lodash';
 
 import Hero from '@/components/heroTitle';
 import { SerializedLexicalNode } from '@/components/richText/types';
 import Content from '@/components/richText';
-import RelatedPosts from '@/components/relatedPosts';
-import { getPayload } from '../../utils';
+
+import { getPayload } from '../utils';
 
 type Props = {
   params: {
-    slug: string;
+    pageSlug: string;
   };
 };
 
-const getPost = cache(async (params: { slug: string }) => {
+const getPost = cache(async (params: { pageSlug: string }) => {
   const payload = await getPayload();
 
   const data = await payload.find({
-    collection: 'posts',
+    collection: 'pages',
     limit: 1,
-    // overrideAccess: true,
     where: {
       slug: {
-        equals: params.slug,
+        equals: params.pageSlug,
       },
     },
   });
@@ -50,15 +49,15 @@ const Page = async ({ params }: Props) => {
       <article>
         <Hero
           title={page.title}
-          author={page.authors?.[0] && !isNumber(page.authors?.[0]) ? page.authors[0]?.name : undefined}
-          date={page.updatedAt || page.createdAt}
+          links={page.related?.map((data) =>
+            'value' in data && !isNumber(data.value) ? { title: data.value.title as string, url: data.value.slug as string } : undefined,
+          )}
         />
 
         <section id="content" className="dark:bg-gray-800 bg-gray-50 py-12 border-y border-solid border-gray-300 dark:border-gray-700 space-y-8">
           {content?.map((node, index) => (
             <Content key={index} data={node} />
           ))}
-          {(page.related || []).length > 0 && <RelatedPosts posts={page.related} />}
         </section>
       </article>
     </main>

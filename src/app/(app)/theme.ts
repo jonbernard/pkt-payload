@@ -1,4 +1,5 @@
 'use client';
+
 import { Jost } from 'next/font/google';
 import { createTheme, ThemeOptions } from '@mui/material/styles';
 
@@ -25,6 +26,28 @@ const sharedConfig = {
   },
   typography: {
     fontFamily: jost.style.fontFamily,
+    fontSize: 16,
+    h1: {
+      fontSize: '2.5rem',
+      fontWeight: 600,
+    },
+    h2: {
+      fontSize: '2rem',
+      fontWeight: 600,
+    },
+    h3: {
+      fontSize: '1.25rem',
+      fontWeight: 500,
+      opacity: 0.5,
+    },
+    h4: {
+      fontSize: '1.25rem',
+      fontWeight: 500,
+    },
+    h5: {
+      fontSize: '1rem',
+      fontWeight: 500,
+    },
   },
 };
 

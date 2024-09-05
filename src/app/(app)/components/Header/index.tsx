@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import ThemeToggler from './ThemeToggler';
 import menuData from './menuData';
 import { Container, Stack } from '@mui/material';
+import classNames from 'classnames';
 
 const Header = () => {
   // Navbar toggle
@@ -87,13 +88,14 @@ const Header = () => {
                     }`}
                   />
                 </button>
+                {/* dark:bg-dark */}
                 <nav
                   id="navbarCollapse"
-                  className={`navbar absolute right-0 z-30 w-[250px] rounded border-[.5px] border-body-color/50 bg-white px-6 py-4 duration-300 dark:border-body-color/20 dark:bg-dark lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
+                  className={`navbar absolute right-0 z-30 w-[250px] rounded border-[.5px] border-body-color/50 bg-white px-6 py-4 duration-300 dark:border-body-color/20 lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
                     navbarOpen ? 'visibility top-full opacity-100' : 'invisible top-[120%] opacity-0'
                   }`}
                 >
-                  <ul className="block lg:flex lg:space-x-12">
+                  <ul className={classNames('block lg:flex lg:space-x-12', { 'mr-6': !menuData[menuData.length - 1].submenu })}>
                     {menuData.map((menuItem, index) => (
                       <li key={index} className="group relative">
                         {menuItem.path ? (
@@ -132,7 +134,7 @@ const Header = () => {
                             >
                               {menuItem.submenu?.map((submenuItem, index) => (
                                 <Link
-                                  href={submenuItem.path}
+                                  href={submenuItem.path || '#'}
                                   key={index}
                                   className="block rounded py-2.5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white lg:px-3"
                                 >

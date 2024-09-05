@@ -13,14 +13,12 @@ import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { Banner } from '../../blocks/Banner';
 import { Code } from '../../blocks/Code';
 import { MediaBlock } from '../../blocks/MediaBlock';
-import { slugField } from '../../fields/slug';
 import { generatePreviewPath } from '../../utilities/generatePreviewPath';
-import { populateAuthors } from './hooks/populateAuthors';
-import { revalidatePost } from './hooks/revalidatePost';
+import { revalidatePage } from './hooks/revalidatePage';
 import { admin } from '@/access/admin';
 
-export const Posts: CollectionConfig = {
-  slug: 'posts',
+export const Pages: CollectionConfig = {
+  slug: 'pages',
   access: {
     create: admin,
     delete: admin,
@@ -32,7 +30,7 @@ export const Posts: CollectionConfig = {
     livePreview: {
       url: ({ data }) => {
         const path = generatePreviewPath({
-          collection: 'posts',
+          collection: 'pages',
           slug: typeof data?.slug === 'string' ? data.slug : '',
         });
         return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`;
@@ -42,9 +40,20 @@ export const Posts: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
-      required: true,
+      type: 'row',
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'shortTitle',
+          type: 'text',
+          required: true,
+          label: 'Short title',
+        },
+      ],
     },
     {
       type: 'tabs',
@@ -69,6 +78,19 @@ export const Posts: CollectionConfig = {
               label: false,
               required: true,
             },
+            {
+              name: 'related',
+              type: 'relationship',
+              filterOptions: ({ id }) => {
+                return {
+                  id: {
+                    not_in: [id],
+                  },
+                };
+              },
+              hasMany: true,
+              relationTo: ['pages', 'posts'],
+            },
           ],
           label: 'Content',
         },
@@ -80,27 +102,8 @@ export const Posts: CollectionConfig = {
               label: 'Short description',
             },
             {
-              name: 'related',
-              type: 'relationship',
-              admin: {
-                position: 'sidebar',
-              },
-              filterOptions: ({ id }) => {
-                return {
-                  id: {
-                    not_in: [id],
-                  },
-                };
-              },
-              hasMany: true,
-              relationTo: ['pages', 'posts'],
-            },
-            {
               name: 'categories',
               type: 'relationship',
-              admin: {
-                position: 'sidebar',
-              },
               hasMany: true,
               relationTo: 'categories',
             },
@@ -108,6 +111,17 @@ export const Posts: CollectionConfig = {
           label: 'Meta',
         },
       ],
+    },
+    {
+      name: 'slug',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+      },
+      index: true,
+      unique: true,
+      required: true,
+      label: 'Slug',
     },
     {
       name: 'publishedAt',
@@ -129,56 +143,9 @@ export const Posts: CollectionConfig = {
         ],
       },
     },
-    {
-      name: 'image',
-      type: 'upload',
-      label: 'Preview image',
-      admin: {
-        position: 'sidebar',
-      },
-      relationTo: 'media',
-      filterOptions: {
-        mimeType: { contains: 'image' },
-      },
-    },
-    {
-      name: 'authors',
-      type: 'relationship',
-      admin: {
-        position: 'sidebar',
-      },
-      hasMany: true,
-      relationTo: 'users',
-    },
-    // This field is only used to populate the user data via the `populateAuthors` hook
-    // This is because the `user` collection has access control locked to protect user privacy
-    // GraphQL will also not return mutated user data that differs from the underlying schema
-    {
-      name: 'populatedAuthors',
-      type: 'array',
-      access: {
-        update: () => false,
-      },
-      admin: {
-        disabled: true,
-        readOnly: true,
-      },
-      fields: [
-        {
-          name: 'id',
-          type: 'text',
-        },
-        {
-          name: 'name',
-          type: 'text',
-        },
-      ],
-    },
-    slugField(),
   ],
   hooks: {
-    afterChange: [revalidatePost],
-    afterRead: [populateAuthors],
+    afterChange: [revalidatePage],
   },
   versions: {
     drafts: {

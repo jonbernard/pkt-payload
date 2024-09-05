@@ -20,6 +20,7 @@
     ],
     "paths": {
       "@/hooks/*": ["./src/app/(app)/hooks/*"],
+      "@/components/*": ["./src/app/(app)/components/*"],
       "@/*": ["./src/*"],
       "@app/*": ["./src/app/(app)/*"],
       "@payload/*": ["./src/app//(payload)/*"],

@@ -32,7 +32,7 @@ const Hero = () => {
           </div>
         </Container>
         <div className="absolute right-0 top-0 lg:-top-[200px] z-[-1] opacity-10 dark:opacity-10 scale-50 lg:scale-100 origin-top-right">
-          <Image src="/coa.png" alt="blob" width={800} height={800} className="animate-in fade-in duration-700" />
+          <Image src="/coa.png" alt="coa" width={800} height={800} className="animate-in fade-in duration-700" />
         </div>
       </section>
     </>

@@ -1,13 +1,10 @@
-import { getPayloadHMR } from '@payloadcms/next/utilities';
-import configPromise from '@payload-config';
 import { NextRequest, NextResponse } from 'next/server';
 
 import { Member } from '@payload-types';
 import { cookies } from 'next/headers';
+import { getPayload } from '@/app/(app)/utils';
 
-const payload = await getPayloadHMR({
-  config: configPromise,
-});
+const payload = await getPayload();
 
 export const POST = async (request: NextRequest) => {
   try {
