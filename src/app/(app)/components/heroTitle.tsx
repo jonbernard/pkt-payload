@@ -39,11 +39,6 @@ const HeroTitle = ({ author, date, links, title }: Props) => {
                       {link?.title}
                     </a>
                   ))}
-                  {links.map((link) => (
-                    <a key={link?.url || ''} href={`/${link?.url}`} className="border-current border-dotted border-b decoration-none">
-                      {link?.title}
-                    </a>
-                  ))}
                 </Stack>
               )}
               {(author || date) && (
