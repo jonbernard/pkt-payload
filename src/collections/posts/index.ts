@@ -16,7 +16,7 @@ import { MediaBlock } from '../../blocks/MediaBlock';
 import { slugField } from '../../fields/slug';
 import { generatePreviewPath } from '../../utilities/generatePreviewPath';
 import { populateAuthors } from './hooks/populateAuthors';
-import { revalidatePost } from './hooks/revalidatePost';
+import { revalidateCache } from './hooks/revalidatePath';
 import { admin } from '@/access/admin';
 import { appearanceOptions, linkFields } from '@/fields/headerLink';
 
@@ -202,7 +202,7 @@ export const Posts: CollectionConfig = {
     },
   ],
   hooks: {
-    afterChange: [revalidatePost],
+    afterChange: [revalidateCache],
     afterRead: [populateAuthors],
   },
   versions: {

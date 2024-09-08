@@ -159,7 +159,7 @@ export const Pages: CollectionConfig = {
       hooks: {
         afterRead: [
           ({ data }) => {
-            return `/${data?.slug}`;
+            return `/${data?.slug && data.slug !== 'home' ? data.slug : ''}`;
           },
         ],
         beforeChange: [
