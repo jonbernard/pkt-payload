@@ -47,7 +47,7 @@ const Page = async () => {
 
       <CallToAction />
 
-      {content && (
+      {content && (content.length > 1 || (content[0]?.children?.length || 0) > 0) && (
         <section id="content" className="dark:bg-gray-800 bg-gray-50 py-12 border-y border-solid border-gray-300 dark:border-gray-700 space-y-8">
           {content?.map((node, index) => (
             <Content key={index} data={node} />

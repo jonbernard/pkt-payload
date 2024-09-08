@@ -64,7 +64,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     },
     sort: 'slug',
   });
-  console.log('JB | RootLayout | footerMenu:', footerMenu);
 
   return (
     <html suppressHydrationWarning={true} lang="en">
