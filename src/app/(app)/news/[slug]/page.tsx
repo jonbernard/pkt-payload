@@ -20,10 +20,12 @@ const getPost = cache(async (params: { slug: string }) => {
   const data = await payload.find({
     collection: 'posts',
     limit: 1,
-    // overrideAccess: true,
     where: {
       slug: {
         equals: params.slug,
+      },
+      _status: {
+        equals: 'published',
       },
     },
   });
@@ -33,8 +35,9 @@ const getPost = cache(async (params: { slug: string }) => {
 
 export async function generateMetadata({ params }: Props) {
   const page = await getPost(params);
+
   return {
-    title: page.title,
+    title: page?.title,
   };
 }
 

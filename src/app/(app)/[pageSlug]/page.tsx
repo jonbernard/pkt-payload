@@ -23,6 +23,9 @@ const getPost = cache(async (params: { pageSlug: string }) => {
       slug: {
         equals: params.pageSlug,
       },
+      _status: {
+        equals: 'published',
+      },
     },
   });
 
