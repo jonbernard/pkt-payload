@@ -29,7 +29,11 @@ export const revalidateCache: CollectionAfterChangeHook<Menu> = async ({ doc, pr
   [...pages, ...posts]
     .filter((page) => page?.url && Boolean(page.slug))
     .forEach((page) => {
-      if (page.url) revalidatePath(page.url);
+      if (page.url) {
+        payload.logger.info(`Revalidating cache at path: ${page.url}`);
+
+        revalidatePath(page.url);
+      }
     });
 
   return doc;
