@@ -16,6 +16,7 @@ import { Users } from '@/collections/users';
 import { Pages } from '@/collections/pages';
 import { Posts } from '@/collections/posts';
 import { Media } from '@/collections/media';
+import { Menus } from '@/collections/menus';
 import { Members } from '@/collections/members';
 
 import { Logo } from '@payload/components/graphics/Logo';
@@ -43,7 +44,7 @@ export default buildConfig({
     },
   },
   editor: lexicalEditor(),
-  collections: [Members, Posts, Pages, Categories, Media, Users],
+  collections: [Members, Posts, Pages, Categories, Menus, Media, Users],
   email: nodemailerAdapter({
     defaultFromAddress: 'email@pktphichapter.org',
     defaultFromName: 'Phi Chapter of Phi Kappa Tau',
@@ -76,6 +77,7 @@ export default buildConfig({
       await payload.create({
         collection: 'users',
         data: {
+          name: 'Default Admin',
           email: 'dev@payloadcms.com',
           password: 'test',
           roles: ['admin', 'user'],

@@ -1,8 +1,9 @@
 import { redirect } from 'next/navigation';
-import HeroTitle from '../../../components/heroTitle';
-import News from '../../../components/News';
-import Pagination from '../../../components/pagination';
-import { getPayload } from '../../../utils';
+import Hero from '@/components/hero';
+
+import News from '@/components/News';
+import Pagination from '@/components/pagination';
+import { getPayload } from '@app/utils';
 
 const Page = async ({ params: { pageNumber } }: { params: { pageNumber: string } }) => {
   if (pageNumber === '1') {
@@ -22,7 +23,7 @@ const Page = async ({ params: { pageNumber } }: { params: { pageNumber: string }
 
   return (
     <>
-      <HeroTitle title="News and Happenings" />
+      <Hero title="News and Happenings" />
       <News posts={data.docs} title={false} />
       <Pagination count={data.totalPages} page={page} createUrl="/news/page/${page}" />
     </>

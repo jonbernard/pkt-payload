@@ -1,17 +1,19 @@
 'use client';
 
 import { Container, Stack } from '@mui/material';
+import { Menu } from '@payload-types';
 import Image from 'next/image';
 import Link from 'next/link';
+import MenuItem from './menuItem';
 
-const Footer = () => {
+const Footer = ({ menus }: { menus: Menu[] }) => {
   return (
-    <footer className="wow fadeInUp dark:bg-gray-dark relative z-10 bg-white py-16 md:py-20 lg:py-24" data-wow-delay=".1s">
+    <footer className="dark:bg-gray-dark relative z-10 bg-white py-16 md:py-20 lg:py-24">
       <Container maxWidth="lg">
         <div className="h-px w-full bg-gradient-to-r from-transparent via-[#D2D8E183] to-transparent dark:via-[#959CB183] mb-12"></div>
 
         <div className="-mx-4 flex flex-wrap">
-          <div className="w-full px-4 md:w-1/2 lg:w-6/12 xl:w-7/12 space-y-4">
+          <div className="w-full px-4 md:w-1/2 space-y-6 mb-6">
             <Stack component={Link} direction={'row'} alignItems="center" spacing={2} href="/" className="header-logo w-full">
               <Image src="/coa.png" alt="logo" width={40} height={40} />
               <div>
@@ -62,65 +64,16 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-2/12 xl:w-2/12">
-            <h2 className="mb-6 text-xl font-bold text-black dark:text-white">Terms</h2>
-            <ul>
-              <li>
-                <a
-                  href="/"
-                  className="dark:text-body-color-dark mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:hover:text-primary"
-                >
-                  TOS
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/"
-                  className="dark:text-body-color-dark mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:hover:text-primary"
-                >
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/"
-                  className="dark:text-body-color-dark mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:hover:text-primary"
-                >
-                  Refund Policy
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="w-full px-4 md:w-1/2 lg:w-4/12 xl:w-3/12">
-            <h2 className="mb-6 text-xl font-bold text-black dark:text-white">Support & Help</h2>
-            <ul>
-              <li>
-                <a
-                  href="/contact"
-                  className="dark:text-body-color-dark mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:hover:text-primary"
-                >
-                  Open Support Ticket
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/"
-                  className="dark:text-body-color-dark mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:hover:text-primary"
-                >
-                  Terms of Use
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/about"
-                  className="dark:text-body-color-dark mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:hover:text-primary"
-                >
-                  About
-                </a>
-              </li>
-            </ul>
-          </div>
+          {menus.map((menu, index) => (
+            <div key={menu.id} className="w-full md:w-1/4 px-4 mb-6">
+              <h2 className="mb-6 text-xl font-bold text-black dark:text-white">{menu.label}</h2>
+              <ul>
+                {menu.items?.map((menuItem, index) => (
+                  <MenuItem key={menuItem.id} {...menuItem} />
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </Container>
       <div className="absolute bottom-4 right-0 z-[-1] opacity-20 dark:opacity-5">

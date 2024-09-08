@@ -18,6 +18,7 @@ import { generatePreviewPath } from '../../utilities/generatePreviewPath';
 import { populateAuthors } from './hooks/populateAuthors';
 import { revalidatePost } from './hooks/revalidatePost';
 import { admin } from '@/access/admin';
+import { appearanceOptions, linkFields } from '@/fields/headerLink';
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -69,6 +70,27 @@ export const Posts: CollectionConfig = {
               label: false,
               required: true,
             },
+            {
+              name: 'relatedLinks',
+              type: 'array',
+              label: 'Related links',
+              maxRows: 6,
+              labels: {
+                singular: 'Link',
+                plural: 'Links',
+              },
+              fields: linkFields,
+            },
+            {
+              name: 'appearance',
+              type: 'select',
+              admin: {
+                description: 'Choose how the link should be rendered.',
+                condition: (data) => (data.relatedLinks || [])?.length > 0,
+              },
+              defaultValue: appearanceOptions.button.value,
+              options: [appearanceOptions.button, appearanceOptions.link],
+            },
           ],
           label: 'Content',
         },
@@ -78,22 +100,6 @@ export const Posts: CollectionConfig = {
               name: 'description',
               type: 'textarea',
               label: 'Short description',
-            },
-            {
-              name: 'related',
-              type: 'relationship',
-              admin: {
-                position: 'sidebar',
-              },
-              filterOptions: ({ id }) => {
-                return {
-                  id: {
-                    not_in: [id],
-                  },
-                };
-              },
-              hasMany: true,
-              relationTo: ['pages', 'posts'],
             },
             {
               name: 'categories',
@@ -175,6 +181,25 @@ export const Posts: CollectionConfig = {
       ],
     },
     slugField(),
+    {
+      name: 'url',
+      type: 'text',
+      admin: {
+        hidden: true,
+      },
+      hooks: {
+        afterRead: [
+          ({ data }) => {
+            return `/news/${data?.slug}`;
+          },
+        ],
+        beforeChange: [
+          ({ siblingData }) => {
+            delete siblingData.url;
+          },
+        ],
+      },
+    },
   ],
   hooks: {
     afterChange: [revalidatePost],

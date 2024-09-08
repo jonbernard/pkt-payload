@@ -1,8 +1,8 @@
 import CallToAction from './components/CallToAction';
-import HeroTitle from './components/heroTitle';
+import Hero from './components/hero';
 import News from './components/News';
 import ScrollUp from './components/ScrollUp';
-import RootLayout from './layout';
+// import RootLayout from './layout';
 import { getPayload } from './utils';
 
 export default async function NotFound() {
@@ -16,11 +16,11 @@ export default async function NotFound() {
   });
 
   return (
-    <RootLayout>
+    <>
       <ScrollUp />
-      <HeroTitle title="Could not find this page" />
+      <Hero title="Could not find this page" />
       <CallToAction />
       <News posts={data.docs} />
-    </RootLayout>
+    </>
   );
 }

@@ -5,7 +5,7 @@ import { isNumber } from 'lodash';
 import { CollectionSlug, DataFromCollectionSlug } from 'payload';
 import { useLivePreview } from '@payloadcms/live-preview-react';
 
-import Hero from '@/components/heroTitle';
+import Hero from '@/components/hero';
 import { SerializedLexicalNode } from '@/components/richText/types';
 import Content from '@/components/richText';
 import RelatedPosts from '@/components/relatedPosts';
@@ -37,7 +37,7 @@ const Client = ({ collection, page: serverData }: Props) => {
           {content?.map((node, index) => (
             <Content key={index} data={node} />
           ))}
-          {'related' in page && (page.related || []).length > 0 && <RelatedPosts posts={page.related} />}
+          {'relatedLinks' in page && (page.relatedLinks || []).length > 0 && <RelatedPosts posts={page.relatedLinks} />}
         </section>
       </article>
     </main>

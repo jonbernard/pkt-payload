@@ -37,6 +37,7 @@ export interface Config {
     posts: Post;
     pages: Page;
     categories: Category;
+    menus: Menu;
     media: Media;
     users: User;
     'payload-preferences': PayloadPreference;
@@ -193,19 +194,26 @@ export interface Post {
     };
     [k: string]: unknown;
   };
-  description?: string | null;
-  related?:
-    | (
-        | {
-            relationTo: 'pages';
-            value: number | Page;
-          }
-        | {
-            relationTo: 'posts';
-            value: number | Post;
-          }
-      )[]
+  relatedLinks?:
+    | {
+        type?: ('reference' | 'custom') | null;
+        newTab?: boolean | null;
+        reference?:
+          | ({
+              relationTo: 'pages';
+              value: number | Page;
+            } | null)
+          | ({
+              relationTo: 'posts';
+              value: number | Post;
+            } | null);
+        url?: string | null;
+        label?: string | null;
+        id?: string | null;
+      }[]
     | null;
+  appearance?: ('button' | 'link') | null;
+  description?: string | null;
   categories?: (number | Category)[] | null;
   publishedAt?: string | null;
   image?: number | Media | null;
@@ -217,6 +225,7 @@ export interface Post {
       }[]
     | null;
   slug?: string | null;
+  url?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -228,7 +237,7 @@ export interface Post {
 export interface Page {
   id: number;
   title: string;
-  shortTitle: string;
+  shortTitle?: string | null;
   content: {
     root: {
       type: string;
@@ -244,22 +253,30 @@ export interface Page {
     };
     [k: string]: unknown;
   };
-  related?:
-    | (
-        | {
-            relationTo: 'pages';
-            value: number | Page;
-          }
-        | {
-            relationTo: 'posts';
-            value: number | Post;
-          }
-      )[]
+  relatedLinks?:
+    | {
+        type?: ('reference' | 'custom') | null;
+        newTab?: boolean | null;
+        reference?:
+          | ({
+              relationTo: 'pages';
+              value: number | Page;
+            } | null)
+          | ({
+              relationTo: 'posts';
+              value: number | Post;
+            } | null);
+        url?: string | null;
+        label?: string | null;
+        id?: string | null;
+      }[]
     | null;
+  appearance?: ('button' | 'link') | null;
   description?: string | null;
   categories?: (number | Category)[] | null;
   slug: string;
   publishedAt?: string | null;
+  url?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -271,6 +288,53 @@ export interface Page {
 export interface Category {
   id: number;
   title?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "menus".
+ */
+export interface Menu {
+  id: number;
+  slug?: string | null;
+  label?: string | null;
+  items?:
+    | {
+        type?: ('reference' | 'custom') | null;
+        newTab?: boolean | null;
+        reference?:
+          | ({
+              relationTo: 'pages';
+              value: number | Page;
+            } | null)
+          | ({
+              relationTo: 'posts';
+              value: number | Post;
+            } | null);
+        url?: string | null;
+        label?: string | null;
+        submenu?:
+          | {
+              type?: ('reference' | 'custom') | null;
+              newTab?: boolean | null;
+              reference?:
+                | ({
+                    relationTo: 'pages';
+                    value: number | Page;
+                  } | null)
+                | ({
+                    relationTo: 'posts';
+                    value: number | Post;
+                  } | null);
+              url?: string | null;
+              label?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }

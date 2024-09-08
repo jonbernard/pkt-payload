@@ -16,6 +16,7 @@ import { MediaBlock } from '../../blocks/MediaBlock';
 import { generatePreviewPath } from '../../utilities/generatePreviewPath';
 import { revalidatePage } from './hooks/revalidatePage';
 import { admin } from '@/access/admin';
+import { appearanceOptions, linkFields } from '@/fields/headerLink';
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -50,7 +51,6 @@ export const Pages: CollectionConfig = {
         {
           name: 'shortTitle',
           type: 'text',
-          required: true,
           label: 'Short title',
         },
       ],
@@ -79,17 +79,25 @@ export const Pages: CollectionConfig = {
               required: true,
             },
             {
-              name: 'related',
-              type: 'relationship',
-              filterOptions: ({ id }) => {
-                return {
-                  id: {
-                    not_in: [id],
-                  },
-                };
+              name: 'relatedLinks',
+              type: 'array',
+              label: 'Related links',
+              maxRows: 6,
+              labels: {
+                singular: 'Link',
+                plural: 'Links',
               },
-              hasMany: true,
-              relationTo: ['pages', 'posts'],
+              fields: linkFields,
+            },
+            {
+              name: 'appearance',
+              type: 'select',
+              admin: {
+                description: 'Choose how the link should be rendered.',
+                condition: (data) => (data.relatedLinks || [])?.length > 0,
+              },
+              defaultValue: appearanceOptions.button.value,
+              options: [appearanceOptions.button, appearanceOptions.link],
             },
           ],
           label: 'Content',
@@ -139,6 +147,25 @@ export const Pages: CollectionConfig = {
               return new Date();
             }
             return value;
+          },
+        ],
+      },
+    },
+    {
+      name: 'url',
+      type: 'text',
+      admin: {
+        hidden: true,
+      },
+      hooks: {
+        afterRead: [
+          ({ data }) => {
+            return `/${data?.slug}`;
+          },
+        ],
+        beforeChange: [
+          ({ siblingData }) => {
+            delete siblingData.url;
           },
         ],
       },

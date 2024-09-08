@@ -2,34 +2,6 @@ import { CollectionConfig } from 'payload';
 import { admin, fieldAdmin } from '@/access/admin';
 import { authenticated } from '@/access/authenticated';
 
-// export const loginAfterCreate: AfterChangeHook = async ({
-//   doc,
-//   operation,
-//   req,
-//   req: { body = {}, payload, res },
-// }) => {
-//   if (operation === 'create' && !req.user) {
-//     const { email, password } = body
-
-//     if (email && password) {
-//       const { token, user } = await payload.login({
-//         collection: 'users',
-//         data: { email, password },
-//         req,
-//         res,
-//       })
-
-//       return {
-//         ...doc,
-//         token,
-//         user,
-//       }
-//     }
-//   }
-
-//   return doc
-// }
-
 export const Users: CollectionConfig = {
   slug: 'users',
   admin: {
@@ -88,8 +60,5 @@ export const Users: CollectionConfig = {
       relationTo: 'media',
     },
   ],
-  // hooks: {
-  //   afterChange: [loginAfterCreate],
-  // },
   timestamps: true,
 };

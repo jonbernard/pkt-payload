@@ -2,7 +2,7 @@ import React, { cache } from 'react';
 import { isNumber } from 'lodash';
 import { notFound } from 'next/navigation';
 
-import Hero from '@/components/heroTitle';
+import Hero from '@/components/hero';
 import { SerializedLexicalNode } from '@/components/richText/types';
 import Content from '@/components/richText';
 import RelatedPosts from '@/components/relatedPosts';
@@ -58,7 +58,7 @@ const Page = async ({ params }: Props) => {
           {content?.map((node, index) => (
             <Content key={index} data={node} />
           ))}
-          {(page.related || []).length > 0 && <RelatedPosts posts={page.related} />}
+          {(page.relatedLinks || []).length > 0 && <RelatedPosts posts={page.relatedLinks} />}
         </section>
       </article>
     </main>

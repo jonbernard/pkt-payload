@@ -1,4 +1,5 @@
-import HeroTitle from '../components/heroTitle';
+import Hero from '@/components/hero';
+
 import News from '../components/News';
 import Pagination from '../components/pagination';
 import { getPayload } from '../utils';
@@ -17,7 +18,7 @@ const Page = async () => {
 
   return (
     <>
-      <HeroTitle title="News and Happenings" />
+      <Hero title="News and Happenings" />
       <News posts={data.docs} title={false} />
       <Pagination count={data.totalPages} page={1} createUrl="/news/page/${page}" />
     </>

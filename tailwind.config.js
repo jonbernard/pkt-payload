@@ -1,7 +1,8 @@
 /* eslint-disable import/no-anonymous-default-export */
+import { withAnimations } from 'animated-tailwindcss';
 
 /** @type {import('tailwindcss').Config} */
-export default {
+const config = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   important: true,
@@ -67,5 +68,6 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
 };
+
+export default withAnimations(config);

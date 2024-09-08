@@ -1,11 +1,11 @@
 // import { Button } from '@mui/material';
 import { Container, Typography } from '@mui/material';
-import { Page, Post } from '@payload-types';
+import { Post } from '@payload-types';
 import { isNumber } from 'lodash';
 import Link from 'next/link';
 
 type Props = {
-  posts?: Post['related'];
+  posts?: Post['relatedLinks'];
 };
 
 const RelatedPosts = ({ posts }: Props) => {
@@ -16,10 +16,11 @@ const RelatedPosts = ({ posts }: Props) => {
       <Typography variant="h4">Related Posts</Typography>
       <ul>
         {posts?.map(
-          ({ value: post }) =>
-            !isNumber(post) && (
-              <li key={post?.title}>
-                <Link href={`/news/${post.slug}`}>{post.title}</Link>
+          ({ reference }) =>
+            reference?.value &&
+            !isNumber(reference?.value) && (
+              <li key={reference?.value?.title}>
+                <Link href={reference?.value.url || '/'}>{reference?.value.title}</Link>
               </li>
             ),
         )}

@@ -10,6 +10,7 @@ import 'node_modules/react-modal-video/css/modal-video.css';
 
 import { Providers } from './providers';
 import './styles/index.css';
+import { getPayload } from './utils';
 
 const jost = Jost({ subsets: ['latin'] });
 
@@ -37,7 +38,34 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const payload = await getPayload();
+
+  const headerMenu = await payload.find({
+    collection: 'menus',
+    overrideAccess: true,
+    limit: 1,
+    depth: 1,
+    where: {
+      slug: {
+        equals: 'header',
+      },
+    },
+  });
+
+  const footerMenu = await payload.find({
+    collection: 'menus',
+    overrideAccess: true,
+    depth: 1,
+    where: {
+      slug: {
+        contains: 'footer',
+      },
+    },
+    sort: 'slug',
+  });
+  console.log('JB | RootLayout | footerMenu:', footerMenu);
+
   return (
     <html suppressHydrationWarning={true} lang="en">
       {/*
@@ -49,9 +77,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`bg-[#FCFCFC] dark:bg-black ${jost.className}`}>
         <NextThemeProvider attribute="class" enableSystem={false} defaultTheme="dark">
           <Providers>
-            <Header />
+            <Header menu={headerMenu.docs[0]} />
             {children}
-            <Footer />
+            <Footer menus={footerMenu.docs} />
             {/* <ScrollToTop /> */}
           </Providers>
         </NextThemeProvider>

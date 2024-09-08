@@ -1,8 +1,7 @@
 import React, { cache } from 'react';
 import { notFound } from 'next/navigation';
-import { isNumber } from 'lodash';
 
-import Hero from '@/components/heroTitle';
+import Hero from '@/components/hero';
 import { SerializedLexicalNode } from '@/components/richText/types';
 import Content from '@/components/richText';
 
@@ -32,8 +31,9 @@ const getPost = cache(async (params: { pageSlug: string }) => {
 
 export async function generateMetadata({ params }: Props) {
   const page = await getPost(params);
+
   return {
-    title: page.title,
+    title: page?.title,
   };
 }
 
@@ -47,12 +47,7 @@ const Page = async ({ params }: Props) => {
   return (
     <main>
       <article>
-        <Hero
-          title={page.title}
-          links={page.related?.map((data) =>
-            'value' in data && !isNumber(data.value) ? { title: data.value.title as string, url: data.value.slug as string } : undefined,
-          )}
-        />
+        <Hero title={page.title} related={page.relatedLinks} linkStyle="link" />
 
         <section id="content" className="dark:bg-gray-800 bg-gray-50 py-12 border-y border-solid border-gray-300 dark:border-gray-700 space-y-8">
           {content?.map((node, index) => (
