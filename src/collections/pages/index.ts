@@ -76,7 +76,6 @@ export const Pages: CollectionConfig = {
                 },
               }),
               label: false,
-              required: true,
             },
             {
               name: 'relatedLinks',

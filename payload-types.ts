@@ -238,7 +238,7 @@ export interface Page {
   id: number;
   title: string;
   shortTitle?: string | null;
-  content: {
+  content?: {
     root: {
       type: string;
       children: {
@@ -252,7 +252,7 @@ export interface Page {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   relatedLinks?:
     | {
         type?: ('reference' | 'custom') | null;
