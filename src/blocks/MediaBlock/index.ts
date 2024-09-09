@@ -16,6 +16,10 @@ export const MediaBlock: Block = {
           label: 'Fullscreen',
           value: 'fullscreen',
         },
+        {
+          label: 'Centered',
+          value: 'centered',
+        },
       ],
     },
     {
