@@ -28,11 +28,7 @@ const Content = ({ data }: { data: SerializedLexicalNode }) => {
 
   if (['heading', 'list'].includes(data.type)) return <DefaultComponent {...data} />;
 
-  return (
-    <Container maxWidth="lg">
-      <h1>---------------{data.type}</h1>
-    </Container>
-  );
+  return <Container maxWidth="lg">Content unavailable</Container>;
 };
 
 export default Content;

@@ -19,7 +19,7 @@ const ImageComponent = (content: SerializedLexicalNode) => {
     return (
       <div ref={elemRef} className="relative w-full">
         <Image
-          src={url}
+          src={`${process.env.NODE_ENV !== 'development' ? process.env.NEXT_PUBLIC_SERVER_URL : ''}${url}`}
           alt={text}
           width={elemSize.width}
           height={elemSize.width * ratio}

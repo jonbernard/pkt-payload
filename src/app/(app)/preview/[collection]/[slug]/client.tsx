@@ -20,7 +20,7 @@ type Props = {
 const Client = ({ collection, news, page: serverData }: Props) => {
   const { data: page } = useLivePreview({
     serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
-    depth: 2,
+    depth: 3,
     initialData: serverData,
   });
 
