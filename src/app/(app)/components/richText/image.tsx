@@ -14,14 +14,15 @@ const ImageComponent = (content: SerializedLexicalNode) => {
   const scale = content?.fields?.position === 'centered' ? 0.5 : 1;
 
   const url = useMemo(() => {
-    if (content.value?.url) return content.value?.url;
-
     if (content?.fields?.position === 'centered' && content.fields?.media?.sizes?.tablet?.url) return content.fields.media.sizes.tablet.url;
 
     if (content?.fields?.position !== 'centered' && content.fields?.media?.sizes?.desktop?.url) return content.fields.media.sizes.desktop.url;
 
+    if (content.value?.url) return content.value?.url;
+
     return content.fields?.media?.url;
-  }, [content.fields?.media?.url, content.value?.url]);
+  }, [content?.fields?.position, content.fields?.media?.url, content.fields?.media?.sizes, content.value?.url]);
+
   const text = useMemo(() => content.fields?.media?.text || content.value?.text || 'Image', [content.fields?.media?.text, content.value?.text]);
 
   if (!url || !text) return null;
