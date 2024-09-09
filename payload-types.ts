@@ -214,6 +214,8 @@ export interface Post {
     | null;
   appearance?: ('button' | 'link') | null;
   description?: string | null;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
   categories?: (number | Category)[] | null;
   publishedAt?: string | null;
   image?: number | Media | null;
@@ -272,6 +274,8 @@ export interface Page {
     | null;
   appearance?: ('button' | 'link') | null;
   description?: string | null;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
   categories?: (number | Category)[] | null;
   slug: string;
   publishedAt?: string | null;

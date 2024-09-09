@@ -1,13 +1,6 @@
-import { Stack } from '@mui/material';
 import { SerializedLexicalNode } from '@/components/richText/types';
 
-import CallToAction from '@/components/CallToAction';
-import Hero from '@/components/hero';
-import News from '@/components/News';
-import ScrollUp from '@/components/ScrollUp';
-
 import { getPayload } from './utils';
-import LinkButton from './components/linkButton';
 import Content from './content';
 
 const Page = async () => {

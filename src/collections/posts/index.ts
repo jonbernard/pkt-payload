@@ -100,7 +100,17 @@ export const Posts: CollectionConfig = {
             {
               name: 'description',
               type: 'textarea',
-              label: 'Short description',
+              label: 'Header description',
+            },
+            {
+              name: 'metaTitle',
+              type: 'text',
+              label: 'Meta title',
+            },
+            {
+              name: 'metaDescription',
+              type: 'text',
+              label: 'Meta description',
             },
             {
               name: 'categories',

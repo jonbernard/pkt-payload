@@ -35,7 +35,13 @@ export async function generateMetadata({ params }: Props) {
   const page = await getPost(params);
 
   return {
-    title: page?.title,
+    title: page?.metaTitle || page?.title,
+    description: page?.metaDescription,
+    openGraph: {
+      title: page?.metaTitle || page?.title,
+      description: page?.metaDescription,
+      url: `${process.env.NEXT_PUBLIC_SERVER_URL}${page?.url}`,
+    },
   };
 }
 

@@ -7,11 +7,11 @@ type Props = DataFromCollectionSlug<'pages'> & {
   body?: SerializedLexicalNode[];
 };
 
-const Content = ({ body, relatedLinks, title }: Props) => {
+const Content = ({ body, description, relatedLinks, title }: Props) => {
   return (
     <main>
       <article>
-        <Hero title={title} related={relatedLinks} linkStyle="link" />
+        <Hero title={title} description={description!} related={relatedLinks} linkStyle="link" />
 
         <section id="content" className="dark:bg-gray-800 bg-gray-50 py-12 border-y border-solid border-gray-300 dark:border-gray-700 space-y-8">
           {body?.map((node, index) => (
