@@ -57,6 +57,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     collection: 'menus',
     overrideAccess: true,
     depth: 1,
+    limit: 2,
     where: {
       slug: {
         contains: 'footer',

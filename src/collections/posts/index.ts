@@ -19,6 +19,7 @@ import { populateAuthors } from './hooks/populateAuthors';
 import { revalidateCache } from './hooks/revalidatePath';
 import { admin } from '@/access/admin';
 import { appearanceOptions, linkFields } from '@/fields/headerLink';
+import { validateSlug } from './hooks/validateSlug';
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -202,7 +203,7 @@ export const Posts: CollectionConfig = {
     },
   ],
   hooks: {
-    afterChange: [revalidateCache],
+    afterChange: [validateSlug, revalidateCache],
     afterRead: [populateAuthors],
   },
   versions: {

@@ -2,7 +2,7 @@ import type { CollectionAfterChangeHook } from 'payload';
 
 import { revalidatePath } from 'next/cache';
 
-import type { Menu, Post } from '@payload-types';
+import type { Menu } from '@payload-types';
 
 export const revalidateCache: CollectionAfterChangeHook<Menu> = async ({ doc, previousDoc, req: { payload } }) => {
   const { docs: pages } = await payload.find({

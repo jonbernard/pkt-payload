@@ -9,14 +9,15 @@ import {
   BlocksFeature,
 } from '@payloadcms/richtext-lexical';
 
+import { admin } from '@/access/admin';
+import { appearanceOptions, linkFields } from '@/fields/headerLink';
+
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished';
 import { Banner } from '../../blocks/Banner';
 import { Code } from '../../blocks/Code';
 import { MediaBlock } from '../../blocks/MediaBlock';
 import { generatePreviewPath } from '../../utilities/generatePreviewPath';
 import { revalidatePage } from './hooks/revalidatePage';
-import { admin } from '@/access/admin';
-import { appearanceOptions, linkFields } from '@/fields/headerLink';
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -41,19 +42,9 @@ export const Pages: CollectionConfig = {
   },
   fields: [
     {
-      type: 'row',
-      fields: [
-        {
-          name: 'title',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'shortTitle',
-          type: 'text',
-          label: 'Short title',
-        },
-      ],
+      name: 'title',
+      type: 'text',
+      required: true,
     },
     {
       type: 'tabs',

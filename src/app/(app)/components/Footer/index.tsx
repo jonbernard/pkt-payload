@@ -65,7 +65,7 @@ const Footer = ({ menus }: { menus: Menu[] }) => {
           </div>
 
           {menus.map((menu, index) => (
-            <div key={menu.id} className="w-full md:w-1/4 px-4 mb-6">
+            <div key={menu.id} className={`w-full md:w-1/${2 * menus.length} px-4 mb-6`}>
               <h2 className="mb-6 text-xl font-bold text-black dark:text-white">{menu.label}</h2>
               <ul>
                 {menu.items?.map((menuItem, index) => (

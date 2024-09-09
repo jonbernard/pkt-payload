@@ -1,5 +1,7 @@
 import type { Field } from 'payload';
 
+import { validateSlug } from '@/collections/posts/hooks/validateSlug';
+
 import deepMerge from '../utilities/deepMerge';
 import { formatSlug, generateSlug } from '../utilities/formatSlug';
 

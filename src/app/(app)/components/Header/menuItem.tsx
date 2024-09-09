@@ -15,14 +15,10 @@ const MenuItem = (props: ArrayElement<Menu['items']> & { index: number; isSubmen
 
   const label = useMemo(() => {
     if (type === 'reference' && reference && !isNumber(reference.value)) {
-      if ('shortTitle' in reference.value) {
-        return passedLabel && passedLabel !== '' ? passedLabel : reference.value.shortTitle || reference.value.title;
-      }
-
-      return passedLabel && passedLabel !== '' ? passedLabel : reference.value.title;
+      return passedLabel && passedLabel !== '' ? passedLabel : reference.value.title || '<<ADD LABEL>>';
     }
 
-    return passedLabel;
+    return passedLabel || '<<ADD LABEL>>';
   }, [passedLabel, type, reference]);
 
   const url = useMemo(() => {

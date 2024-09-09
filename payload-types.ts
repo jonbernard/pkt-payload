@@ -237,7 +237,6 @@ export interface Post {
 export interface Page {
   id: number;
   title: string;
-  shortTitle?: string | null;
   content?: {
     root: {
       type: string;
