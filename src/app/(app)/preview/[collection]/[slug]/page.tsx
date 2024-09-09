@@ -21,7 +21,7 @@ const getPost = async (params: Props['params']) => {
 
   const data = await payload.find({
     collection: params.collection,
-    limit: 10,
+    limit: 1,
     overrideAccess: true,
     draft: true,
     where: {
@@ -36,6 +36,7 @@ const getPost = async (params: Props['params']) => {
 
 export async function generateMetadata({ params }: Props) {
   const page = await getPost(params);
+
   return {
     title: page?.metaTitle || page?.title,
     description: page?.metaDescription,

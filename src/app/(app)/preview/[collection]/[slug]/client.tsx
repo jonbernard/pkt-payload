@@ -10,6 +10,7 @@ import HomeContent from '@/app/(app)/content';
 import PageContent from '@/app/(app)/[pageSlug]/content';
 import PostContent from '@/app/(app)/news/[slug]/content';
 import { Post } from '@payload-types';
+import { CircularProgress } from '@mui/material';
 
 type Props = {
   collection: CollectionSlug;
@@ -18,11 +19,20 @@ type Props = {
 };
 
 const Client = ({ collection, news, page: serverData }: Props) => {
-  const { data: page } = useLivePreview({
+  const { data: page, isLoading } = useLivePreview({
     serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
-    depth: 3,
     initialData: serverData,
   });
+
+  if (isLoading) {
+    return (
+      <main>
+        <article className="flex items-center justify-center z-50 fixed top-0 left-0 w-full h-full bg-gray-dark">
+          <CircularProgress />
+        </article>
+      </main>
+    );
+  }
 
   const content = page.content?.root?.children as SerializedLexicalNode[];
 
