@@ -1,15 +1,12 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Container } from '@mui/material';
-import Image from 'next/image';
-import useElementSize from '@/hooks/useElementSize';
+
 import { SerializedLexicalNode } from './types';
 import classNames from 'classnames';
 
 const ImageComponent = (content: SerializedLexicalNode) => {
-  const [elemSize, elemRef] = useElementSize();
-
   const url = useMemo(() => {
     if (content?.fields?.position === 'centered' && content.fields?.media?.sizes?.tablet?.url) return content.fields.media.sizes.tablet.url;
 
@@ -26,7 +23,7 @@ const ImageComponent = (content: SerializedLexicalNode) => {
 
   if (content?.fields?.position === 'fullscreen') {
     return (
-      <div ref={elemRef} className="relative w-full">
+      <div className="relative w-full">
         <img
           src={`${process.env.NEXT_PUBLIC_NODE_ENV === 'development' ? '' : process.env.NEXT_PUBLIC_SERVER_URL}${url}`}
           alt={text}
