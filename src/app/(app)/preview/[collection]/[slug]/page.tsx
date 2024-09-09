@@ -46,7 +46,16 @@ const Page = async ({ params }: Props) => {
 
   if (!page) return notFound();
 
-  return <Client collection={params.collection} page={page} />;
+  const payload = await getPayload();
+
+  const news = await payload.find({
+    collection: 'posts',
+    limit: 3,
+    overrideAccess: true,
+    sort: '-updatedAt',
+  });
+
+  return <Client collection={params.collection} page={page} news={news} />;
 };
 
 export default Page;
