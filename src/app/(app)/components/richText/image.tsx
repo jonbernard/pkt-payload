@@ -8,10 +8,7 @@ import { SerializedLexicalNode } from './types';
 import classNames from 'classnames';
 
 const ImageComponent = (content: SerializedLexicalNode) => {
-  const [ratio, setRatio] = useState(16 / 9);
   const [elemSize, elemRef] = useElementSize();
-
-  const scale = content?.fields?.position === 'centered' ? 0.5 : 1;
 
   const url = useMemo(() => {
     if (content?.fields?.position === 'centered' && content.fields?.media?.sizes?.tablet?.url) return content.fields.media.sizes.tablet.url;
@@ -30,13 +27,10 @@ const ImageComponent = (content: SerializedLexicalNode) => {
   if (content?.fields?.position === 'fullscreen') {
     return (
       <div ref={elemRef} className="relative w-full">
-        <Image
+        <img
           src={`${process.env.NEXT_PUBLIC_NODE_ENV === 'development' ? '' : process.env.NEXT_PUBLIC_SERVER_URL}${url}`}
           alt={text}
-          width={elemSize.width}
-          height={elemSize.width * ratio}
-          layout="responsive"
-          onLoadingComplete={({ naturalWidth, naturalHeight }) => setRatio(naturalWidth / naturalHeight)}
+          className="w-full"
         />
       </div>
     );
@@ -45,20 +39,12 @@ const ImageComponent = (content: SerializedLexicalNode) => {
   return (
     <Container
       component="div"
-      ref={elemRef}
       maxWidth="lg"
       className={classNames('relative', {
         'flex justify-center': content?.fields?.position === 'centered',
       })}
     >
-      <Image
-        src={url}
-        alt={text}
-        width={elemSize.width * scale}
-        height={elemSize.width * scale * ratio}
-        layout={content?.fields?.position !== 'centered' ? 'responsive' : undefined}
-        onLoadingComplete={({ naturalWidth, naturalHeight }) => setRatio(naturalWidth / naturalHeight)}
-      />
+      <img src={url} alt={text} className={content?.fields?.position === 'centered' ? 'w-1/2' : 'w-full'} />
     </Container>
   );
 };
