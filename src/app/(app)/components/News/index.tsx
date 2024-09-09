@@ -5,7 +5,7 @@ import { Post } from '@payload-types';
 
 import NewsCard from './card';
 
-const News = async ({ posts, title = true }: { posts: Post[]; title?: boolean }) => {
+const News = ({ posts, title = true }: { posts: Post[]; title?: boolean }) => {
   if (!posts || posts.length === 0) return null;
 
   return (
