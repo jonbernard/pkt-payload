@@ -98,7 +98,7 @@ const Header = ({ menu: menuData }: { menu: Menu }) => {
                     navbarOpen ? 'visibility top-6 opacity-100 open' : 'invisible top-[120%] opacity-0'
                   }`}
                 >
-                  <ul className={classNames('block lg:flex lg:space-x-12', { 'mr-6': !hasLastSubmenu })}>
+                  <ul className={classNames('block lg:flex lg:space-x-8', { 'mr-6': !hasLastSubmenu })}>
                     {menu && menu.map((menuItem, index) => <MenuItem key={menuItem.id} {...menuItem} index={index} onClick={navbarToggleHandler} />)}
                   </ul>
                 </nav>
