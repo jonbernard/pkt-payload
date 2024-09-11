@@ -1,18 +1,6 @@
 import type { CollectionConfig } from 'payload';
 
-import {
-  FixedToolbarFeature,
-  HeadingFeature,
-  HorizontalRuleFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-  BlocksFeature,
-} from '@payloadcms/richtext-lexical';
-
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished';
-import { Banner } from '../../blocks/Banner';
-import { Code } from '../../blocks/Code';
-import { MediaBlock } from '../../blocks/MediaBlock';
 import { slugField } from '../../fields/slug';
 import { generatePreviewPath } from '../../utilities/generatePreviewPath';
 import { populateAuthors } from './hooks/populateAuthors';
@@ -20,7 +8,7 @@ import { revalidateCache } from './hooks/revalidatePath';
 import { admin } from '@/access/admin';
 import { appearanceOptions, linkFields } from '@/fields/headerLink';
 import { validateSlug } from './hooks/validateSlug';
-import { Content } from '@/blocks/Content';
+import { editor } from '../../blocks';
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -57,18 +45,7 @@ export const Posts: CollectionConfig = {
             {
               name: 'content',
               type: 'richText',
-              editor: lexicalEditor({
-                features: ({ rootFeatures }) => {
-                  return [
-                    ...rootFeatures,
-                    HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    BlocksFeature({ blocks: [Content, Banner, Code, MediaBlock] }),
-                    FixedToolbarFeature(),
-                    InlineToolbarFeature(),
-                    HorizontalRuleFeature(),
-                  ];
-                },
-              }),
+              editor: editor,
               label: false,
               required: true,
             },

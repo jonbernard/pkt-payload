@@ -11,6 +11,7 @@ import Relationship from './relationship';
 import Quote from './quote';
 import FileComponent from './file';
 import ContentBlock from './content';
+import Video from './video';
 
 const smallSizeTypes = ['relationship', 'upload'];
 
@@ -32,6 +33,9 @@ const Content = ({ data, excludeContainer }: { data: SerializedLexicalNode; excl
     }
     if (data.type === 'block' && data.fields.blockType === 'content') {
       return <ContentBlock {...data} />; // eslint-disable-line jsx-a11y/alt-text
+    }
+    if (data.type === 'block' && data.fields.blockType === 'video') {
+      return <Video {...data} />; // eslint-disable-line jsx-a11y/alt-text
     }
 
     if (['heading', 'list'].includes(data.type)) return <DefaultComponent {...data} />;
