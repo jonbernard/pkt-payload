@@ -48,7 +48,7 @@ export const Content: Block = {
     {
       name: 'align',
       type: 'select',
-      defaultValue: 'items-start',
+      defaultValue: 'flex-start',
       options: [
         {
           label: 'Start',
