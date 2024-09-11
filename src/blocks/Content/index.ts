@@ -2,29 +2,31 @@ import type { Block, Field } from 'payload';
 
 import { FixedToolbarFeature, HeadingFeature, InlineToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
 
-import { link } from '../../fields/link';
-
 const columnFields: Field[] = [
   {
     name: 'size',
     type: 'select',
-    defaultValue: 'oneThird',
+    defaultValue: 'w-1/2',
     options: [
       {
+        label: 'One Forth',
+        value: 'w-1/4',
+      },
+      {
         label: 'One Third',
-        value: 'oneThird',
+        value: 'w-1/3',
       },
       {
         label: 'Half',
-        value: 'half',
+        value: 'w-1/2',
       },
       {
         label: 'Two Thirds',
-        value: 'twoThirds',
+        value: 'w-2/3',
       },
       {
-        label: 'Full',
-        value: 'full',
+        label: 'Three Forths',
+        value: 'w-3/4',
       },
     ],
   },
@@ -38,22 +40,34 @@ const columnFields: Field[] = [
     }),
     label: false,
   },
-  {
-    name: 'enableLink',
-    type: 'checkbox',
-  },
-  link({
-    overrides: {
-      admin: {
-        condition: (_: any, { enableLink }: any) => Boolean(enableLink),
-      },
-    },
-  }),
 ];
 
 export const Content: Block = {
   slug: 'content',
   fields: [
+    {
+      name: 'align',
+      type: 'select',
+      defaultValue: 'items-start',
+      options: [
+        {
+          label: 'Start',
+          value: 'flex-start',
+        },
+        {
+          label: 'End',
+          value: 'flex-end',
+        },
+        {
+          label: 'Center',
+          value: 'center',
+        },
+        {
+          label: 'Stretch',
+          value: 'stretch',
+        },
+      ],
+    },
     {
       name: 'columns',
       type: 'array',

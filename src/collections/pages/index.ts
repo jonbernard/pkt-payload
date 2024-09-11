@@ -15,6 +15,7 @@ import { appearanceOptions, linkFields } from '@/fields/headerLink';
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished';
 import { Banner } from '../../blocks/Banner';
 import { Code } from '../../blocks/Code';
+import { Content } from '../../blocks/Content';
 import { MediaBlock } from '../../blocks/MediaBlock';
 import { generatePreviewPath } from '../../utilities/generatePreviewPath';
 import { revalidatePage } from './hooks/revalidatePage';
@@ -59,7 +60,7 @@ export const Pages: CollectionConfig = {
                   return [
                     ...rootFeatures,
                     HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    BlocksFeature({ blocks: [Banner, Code, MediaBlock] }),
+                    BlocksFeature({ blocks: [Content, Banner, Code, MediaBlock] }),
                     FixedToolbarFeature(),
                     InlineToolbarFeature(),
                     HorizontalRuleFeature(),

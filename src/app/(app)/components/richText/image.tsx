@@ -1,10 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
+
 'use client';
 
 import { useMemo } from 'react';
-import { Container } from '@mui/material';
 
 import { SerializedLexicalNode } from './types';
 import classNames from 'classnames';
+import { Box } from '@mui/material';
 
 const ImageComponent = (content: SerializedLexicalNode) => {
   const url = useMemo(() => {
@@ -34,15 +36,14 @@ const ImageComponent = (content: SerializedLexicalNode) => {
   }
 
   return (
-    <Container
-      component="div"
-      maxWidth="lg"
+    <Box
       className={classNames('relative', {
         'flex justify-center': content?.fields?.position === 'centered',
       })}
+      sx={{}}
     >
       <img src={url} alt={text} className={content?.fields?.position === 'centered' ? 'w-1/2' : 'w-full'} />
-    </Container>
+    </Box>
   );
 };
 

@@ -53,6 +53,10 @@ p {
   input[type='checkbox']:checked + label {
     text-decoration: line-through;
   }
+
+  .heading-h3 + * {
+    margin-top: 6px !important;
+  }
 }
 
 @media (max-width: 767px) {

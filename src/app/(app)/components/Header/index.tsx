@@ -65,7 +65,7 @@ const Header = ({ menu: menuData }: { menu: Menu }) => {
                 className={`header-logo w-full ${sticky ? 'py-5 lg:py-2' : 'py-8'} `}
               >
                 <Image src="/coa.png" alt="logo" width={40} height={40} />
-                <span className="whitespace-nowrap font-semibold text-2xl">Phi Chapter of Phi Kappa Tau</span>
+                <span className="whitespace-nowrap font-semibold text-sm sm:text-lg md:text-xl lg:text-2xl">Phi Chapter of Phi Kappa Tau</span>
               </Stack>
             </div>
             <div className="flex w-full items-center justify-end px-4">
@@ -99,7 +99,7 @@ const Header = ({ menu: menuData }: { menu: Menu }) => {
                   }`}
                 >
                   <ul className={classNames('block lg:flex lg:space-x-12', { 'mr-6': !hasLastSubmenu })}>
-                    {menu && menu.map((menuItem, index) => <MenuItem key={menuItem.id} {...menuItem} index={index} />)}
+                    {menu && menu.map((menuItem, index) => <MenuItem key={menuItem.id} {...menuItem} index={index} onClick={navbarToggleHandler} />)}
                   </ul>
                 </nav>
               </div>

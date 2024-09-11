@@ -6,6 +6,16 @@ const nextConfig = {
   experimental: {
     reactCompiler: false,
   },
+  ...(!process?.env?.NODE_ENV === 'production'
+    ? {
+        compiler: {
+          removeConsole: {
+            exclude: ['error', 'info'],
+          },
+          reactRemoveProperties: true,
+        },
+      }
+    : {}),
   images: {
     remotePatterns: [
       {

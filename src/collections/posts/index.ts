@@ -20,6 +20,7 @@ import { revalidateCache } from './hooks/revalidatePath';
 import { admin } from '@/access/admin';
 import { appearanceOptions, linkFields } from '@/fields/headerLink';
 import { validateSlug } from './hooks/validateSlug';
+import { Content } from '@/blocks/Content';
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -61,7 +62,7 @@ export const Posts: CollectionConfig = {
                   return [
                     ...rootFeatures,
                     HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    BlocksFeature({ blocks: [Banner, Code, MediaBlock] }),
+                    BlocksFeature({ blocks: [Content, Banner, Code, MediaBlock] }),
                     FixedToolbarFeature(),
                     InlineToolbarFeature(),
                     HorizontalRuleFeature(),

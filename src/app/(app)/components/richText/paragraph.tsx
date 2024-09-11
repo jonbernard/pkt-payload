@@ -1,5 +1,4 @@
-import { Box, Container } from '@mui/material';
-import classNames from 'classnames';
+import { Box } from '@mui/material';
 
 import { serialize } from './utils';
 import { SerializedLexicalNode } from './types';
@@ -16,13 +15,11 @@ const Paragraph = (content: SerializedLexicalNode) => {
 
   if (indent > 0) {
     return (
-      <Container maxWidth="lg">
-        <Box className={style[content.format] || ''} sx={{ paddingLeft: indent * 8 }} dangerouslySetInnerHTML={{ __html: serialize([content]) }} />
-      </Container>
+      <Box className={style[content.format] || ''} sx={{ paddingLeft: indent * 8 }} dangerouslySetInnerHTML={{ __html: serialize([content]) }} />
     );
   }
 
-  return <Container className={style[content.format] || ''} maxWidth="lg" dangerouslySetInnerHTML={{ __html: serialize([content]) }} />;
+  return <div className={style[content.format] || ''} dangerouslySetInnerHTML={{ __html: serialize([content]) }} />;
 };
 
 export default Paragraph;

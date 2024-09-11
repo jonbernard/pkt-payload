@@ -10,8 +10,8 @@ import { isNumber } from 'lodash';
 
 type ArrayElement<ArrayType> = ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
 
-const MenuItem = (props: ArrayElement<Menu['items']> & { index: number; isSubmenuItem?: boolean }) => {
-  const { label: passedLabel, newTab, reference, submenu, type, url: passedUrl, index, isSubmenuItem } = props;
+const MenuItem = (props: ArrayElement<Menu['items']> & { onClick: () => void; index: number; isSubmenuItem?: boolean }) => {
+  const { label: passedLabel, onClick, newTab, reference, submenu, type, url: passedUrl, index, isSubmenuItem } = props;
 
   const label = useMemo(() => {
     if (type === 'reference' && reference && !isNumber(reference.value)) {
@@ -48,10 +48,11 @@ const MenuItem = (props: ArrayElement<Menu['items']> & { index: number; isSubmen
       {!submenu || submenu.length === 0 ? (
         <Link
           href={url}
+          onClick={onClick}
           className={classNames(
             usePathName === url ? 'text-primary dark:text-white' : 'text-dark hover:text-primary dark:text-white/70 dark:hover:text-white',
             {
-              'flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6': !isSubmenuItem,
+              'flex py-4 text-4xl lg:text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6': !isSubmenuItem,
               'block rounded py-2.5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white lg:px-3': isSubmenuItem,
             },
           )}
@@ -87,7 +88,7 @@ const MenuItem = (props: ArrayElement<Menu['items']> & { index: number; isSubmen
             }`}
           >
             {submenu?.map((submenuItem, index) => (
-              <MenuItem key={index} {...submenuItem} index={index} isSubmenuItem />
+              <MenuItem key={index} {...submenuItem} index={index} onClick={onClick} isSubmenuItem />
             ))}
           </ul>
         </>
