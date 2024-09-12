@@ -1,6 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-const useElementSize = (): [size: { width: number; height: number }, ref: React.RefObject<HTMLDivElement | null>] => {
+const useElementSize = (): [
+  size: { width: number; height: number },
+  ref: React.RefObject<HTMLDivElement | null>,
+] => {
   const ref = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({
     width: 0,

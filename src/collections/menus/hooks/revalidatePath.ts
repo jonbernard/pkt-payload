@@ -1,6 +1,6 @@
-import type { CollectionAfterChangeHook } from 'payload';
-
 import { revalidatePath } from 'next/cache';
+
+import type { CollectionAfterChangeHook } from 'payload';
 
 import type { Menu } from '@payload-types';
 

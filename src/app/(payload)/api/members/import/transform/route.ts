@@ -1,11 +1,11 @@
-import * as XLSX from 'xlsx';
-import { NextRequest, NextResponse } from 'next/server';
 import { isNumber } from 'lodash';
-
-import { Member } from '@payload-types';
 import { DateTime } from 'luxon';
 import { cookies } from 'next/headers';
+import { NextRequest, NextResponse } from 'next/server';
+import * as XLSX from 'xlsx';
+
 import { getPayload } from '@/app/(app)/utils';
+import { Member } from '@payload-types';
 
 type ImportRow = {
   pref?: string;
@@ -84,7 +84,9 @@ export const POST = async (request: NextRequest) => {
       cellText: false,
     });
 
-    const data = (XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]) as ImportRow[]).filter((item) => item && isNumber(item.L));
+    const data = (
+      XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]) as ImportRow[]
+    ).filter((item) => item && isNumber(item.L));
 
     const promises = data.map(async (row) => {
       try {

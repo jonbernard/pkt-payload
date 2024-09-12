@@ -1,7 +1,16 @@
 import escapeHTML from 'escape-html';
-import { IS_BOLD, IS_ITALIC, IS_STRIKETHROUGH, IS_UNDERLINE, IS_CODE, IS_SUBSCRIPT, IS_SUPERSCRIPT } from './RichTextNodeFormat';
-import type { SerializedLexicalNode } from './types';
 import { isNumber } from 'lodash';
+
+import {
+  IS_BOLD,
+  IS_CODE,
+  IS_ITALIC,
+  IS_STRIKETHROUGH,
+  IS_SUBSCRIPT,
+  IS_SUPERSCRIPT,
+  IS_UNDERLINE,
+} from './RichTextNodeFormat';
+import type { SerializedLexicalNode } from './types';
 
 function getLinkForPage(doc?: { relationTo: string; value: { slug: string } }) {
   if (!doc) {
@@ -54,7 +63,9 @@ export function serialize(children: SerializedLexicalNode[], parentType?: string
         return null;
       }
 
-      const serializedChildren = node.children ? serialize(node.children, node.listType || node.type).join('') : null;
+      const serializedChildren = node.children
+        ? serialize(node.children, node.listType || node.type).join('')
+        : null;
 
       switch (node.type) {
         case 'linebreak':
@@ -74,14 +85,18 @@ export function serialize(children: SerializedLexicalNode[], parentType?: string
           if (!attributes) return '';
 
           if (attributes?.linkType === 'custom') {
-            return `<a href="${attributes.url}"${attributes.newTab ? ' target=_"blank"' : ''} rel="${attributes?.rel ?? ''}${
-              attributes?.sponsored ? ' sponsored' : ''
-            }${attributes?.nofollow ? ' nofollow' : ''}">${serializedChildren}</a>`;
+            return `<a href="${attributes.url}"${
+              attributes.newTab ? ' target=_"blank"' : ''
+            } rel="${attributes?.rel ?? ''}${attributes?.sponsored ? ' sponsored' : ''}${
+              attributes?.nofollow ? ' nofollow' : ''
+            }">${serializedChildren}</a>`;
           }
 
-          return `<a href="${getLinkForPage(attributes.doc)}"${attributes.newTab ? ' target=_"blank"' : ''} rel="${attributes?.rel ?? ''}${
-            attributes?.sponsored ? ' sponsored' : ''
-          }${attributes?.nofollow ? ' nofollow' : ''}">${serializedChildren}</a>`; //TODO: Check doc link handling
+          return `<a href="${getLinkForPage(attributes.doc)}"${
+            attributes.newTab ? ' target=_"blank"' : ''
+          } rel="${attributes?.rel ?? ''}${attributes?.sponsored ? ' sponsored' : ''}${
+            attributes?.nofollow ? ' nofollow' : ''
+          }">${serializedChildren}</a>`; //TODO: Check doc link handling
         case 'list': //TODO handle properly, especially nested lists
           if (node.listType === 'check') {
             return `

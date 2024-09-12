@@ -1,8 +1,9 @@
-import { Stack } from '@mui/material';
 import classNames from 'classnames';
 
-import { SerializedLexicalNode } from './types';
+import { Stack } from '@mui/material';
+
 import Content from '.';
+import { SerializedLexicalNode } from './types';
 
 const ContentBlock = (content: SerializedLexicalNode) => {
   return (
@@ -12,7 +13,8 @@ const ContentBlock = (content: SerializedLexicalNode) => {
           <div key={column.id} className={classNames(column.size, 'space-y-6')}>
             {column.richText?.root?.children &&
               column.richText?.root?.children.map(
-                (content: any, index: number) => content && <Content key={index} data={content} excludeContainer />,
+                (content: any, index: number) =>
+                  content && <Content key={index} data={content} excludeContainer />,
               )}
           </div>
         );

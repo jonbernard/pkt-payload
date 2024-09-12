@@ -1,4 +1,5 @@
 import React, { cache } from 'react';
+
 import { notFound } from 'next/navigation';
 
 import { SerializedLexicalNode } from '@/components/richText/types';

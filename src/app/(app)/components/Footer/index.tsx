@@ -1,9 +1,12 @@
 'use client';
 
-import { Container, Stack } from '@mui/material';
-import { Menu } from '@payload-types';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { Container, Stack } from '@mui/material';
+
+import { Menu } from '@payload-types';
+
 import MenuItem from './menuItem';
 
 const Footer = ({ menus }: { menus: Menu[] }) => {
@@ -14,7 +17,14 @@ const Footer = ({ menus }: { menus: Menu[] }) => {
 
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4 md:w-1/2 space-y-6 mb-6">
-            <Stack component={Link} direction={'row'} alignItems="center" spacing={2} href="/" className="header-logo w-full">
+            <Stack
+              component={Link}
+              direction={'row'}
+              alignItems="center"
+              spacing={2}
+              href="/"
+              className="header-logo w-full"
+            >
               <Image src="/coa.png" alt="logo" width={40} height={40} />
               <div>
                 <div className="font-semibold text-lg">Phi Chapter of Phi Kappa Tau</div>
@@ -56,7 +66,10 @@ const Footer = ({ menus }: { menus: Menu[] }) => {
           </div>
 
           {menus.map((menu, index) => (
-            <div key={menu.id} className={`w-full ${menus.length === 1 ? 'md:w-1/2' : 'md:w-1/4'} px-4 mb-6`}>
+            <div
+              key={menu.id}
+              className={`w-full ${menus.length === 1 ? 'md:w-1/2' : 'md:w-1/4'} px-4 mb-6`}
+            >
               <h2 className="mb-6 text-xl font-bold text-black dark:text-white">{menu.label}</h2>
               <ul>
                 {menu.items?.map((menuItem, index) => (
@@ -69,7 +82,13 @@ const Footer = ({ menus }: { menus: Menu[] }) => {
       </Container>
       <div className="absolute bottom-4 right-0 z-[-1] opacity-20 dark:opacity-5">
         <Image src="/letters-red.png" alt="logo" width={400} height={40} className="dark:hidden" />
-        <Image src="/letters-white.png" alt="logo" width={400} height={40} className="hidden dark:block" />
+        <Image
+          src="/letters-white.png"
+          alt="logo"
+          width={400}
+          height={40}
+          className="hidden dark:block"
+        />
       </div>
     </footer>
   );

@@ -1,14 +1,15 @@
 import type { CollectionConfig } from 'payload';
 
-import { authenticatedOrPublished } from '../../access/authenticatedOrPublished';
-import { slugField } from '../../fields/slug';
-import { generatePreviewPath } from '../../utilities/generatePreviewPath';
+import { admin } from '@/access/admin';
+import { authenticatedOrPublished } from '@/access/authenticatedOrPublished';
+import { editor } from '@/blocks';
+import { appearanceOptions, linkFields } from '@/fields/headerLink';
+import { slugField } from '@/fields/slug';
+import { generatePreviewPath } from '@/utilities/generatePreviewPath';
+
 import { populateAuthors } from './hooks/populateAuthors';
 import { revalidateCache } from './hooks/revalidatePath';
-import { admin } from '@/access/admin';
-import { appearanceOptions, linkFields } from '@/fields/headerLink';
 import { validateSlug } from './hooks/validateSlug';
-import { editor } from '../../blocks';
 
 export const Posts: CollectionConfig = {
   slug: 'posts',

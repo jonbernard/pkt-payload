@@ -1,16 +1,18 @@
 'use client';
 
 import React from 'react';
+
 import { CollectionSlug, DataFromCollectionSlug, PaginatedDocs } from 'payload';
+
+import { CircularProgress } from '@mui/material';
+
 import { useLivePreview } from '@payloadcms/live-preview-react';
 
-import { SerializedLexicalNode } from '@/components/richText/types';
-
-import HomeContent from '@/app/(app)/content';
 import PageContent from '@/app/(app)/[pageSlug]/content';
+import HomeContent from '@/app/(app)/content';
 import PostContent from '@/app/(app)/news/[slug]/content';
+import { SerializedLexicalNode } from '@/components/richText/types';
 import { Post } from '@payload-types';
-import { CircularProgress } from '@mui/material';
 
 type Props = {
   collection: CollectionSlug;
@@ -37,9 +39,13 @@ const Client = ({ collection, news, page: serverData }: Props) => {
   const content = page.content?.root?.children as SerializedLexicalNode[];
 
   if (collection === 'pages' && page.slug === 'home')
-    return <HomeContent body={content} {...(page as DataFromCollectionSlug<'pages'>)} news={news} />;
-  if (collection === 'pages') return <PageContent body={content} {...(page as DataFromCollectionSlug<'pages'>)} />;
-  if (collection === 'posts') return <PostContent body={content} {...(page as DataFromCollectionSlug<'posts'>)} />;
+    return (
+      <HomeContent body={content} {...(page as DataFromCollectionSlug<'pages'>)} news={news} />
+    );
+  if (collection === 'pages')
+    return <PageContent body={content} {...(page as DataFromCollectionSlug<'pages'>)} />;
+  if (collection === 'posts')
+    return <PostContent body={content} {...(page as DataFromCollectionSlug<'posts'>)} />;
 
   return (
     <main>

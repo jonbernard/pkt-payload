@@ -1,7 +1,7 @@
 import { SerializedLexicalNode } from '@/components/richText/types';
 
-import { getPayload } from './utils';
 import Content from './content';
+import { getPayload } from './utils';
 
 const Page = async () => {
   const payload = await getPayload();

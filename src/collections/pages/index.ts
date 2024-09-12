@@ -1,12 +1,12 @@
 import type { CollectionConfig } from 'payload';
 
 import { admin } from '@/access/admin';
+import { authenticatedOrPublished } from '@/access/authenticatedOrPublished';
+import { editor } from '@/blocks';
 import { appearanceOptions, linkFields } from '@/fields/headerLink';
+import { generatePreviewPath } from '@/utilities/generatePreviewPath';
 
-import { authenticatedOrPublished } from '../../access/authenticatedOrPublished';
-import { generatePreviewPath } from '../../utilities/generatePreviewPath';
 import { revalidatePage } from './hooks/revalidatePage';
-import { editor } from '../../blocks';
 
 export const Pages: CollectionConfig = {
   slug: 'pages',

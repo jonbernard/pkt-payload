@@ -1,6 +1,7 @@
 import { Alert } from '@mui/material';
-import { serialize } from './utils';
+
 import { SerializedLexicalNode } from './types';
+import { serialize } from './utils';
 
 const Banner = (content: SerializedLexicalNode) => {
   return (

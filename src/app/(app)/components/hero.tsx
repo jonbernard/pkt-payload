@@ -1,8 +1,9 @@
 import { DateTime } from 'luxon';
 import Image from 'next/image';
 
-import { LinkAppearances } from '@/fields/headerLink';
 import { Container, Stack } from '@mui/material';
+
+import { LinkAppearances } from '@/fields/headerLink';
 import { Page, Post } from '@payload-types';
 
 import Link from './link';
@@ -40,12 +41,18 @@ const Hero = (props: Props) => {
                   </p>
                 )}
                 {description && (
-                  <p className="dark:text-body-color-dark mb-6 text-base !leading-relaxed text-body-color sm:text-lg md:text-xl">{description}</p>
+                  <p className="dark:text-body-color-dark mb-6 text-base !leading-relaxed text-body-color sm:text-lg md:text-xl">
+                    {description}
+                  </p>
                 )}
                 {related && (
                   <Stack direction="row" alignItems="center" justifyContent="center" spacing={3}>
                     {related.map((link) =>
-                      linkStyle === 'button' ? <LinkButton key={link?.id || ''} {...link} /> : <Link key={link?.id || ''} {...link} />,
+                      linkStyle === 'button' ? (
+                        <LinkButton key={link?.id || ''} {...link} />
+                      ) : (
+                        <Link key={link?.id || ''} {...link} />
+                      ),
                     )}
                   </Stack>
                 )}

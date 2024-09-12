@@ -1,7 +1,8 @@
 'use client';
 
 import { Jost } from 'next/font/google';
-import { createTheme, ThemeOptions } from '@mui/material/styles';
+
+import { ThemeOptions, createTheme } from '@mui/material/styles';
 
 export enum colors {
   Red = '#A6192E',

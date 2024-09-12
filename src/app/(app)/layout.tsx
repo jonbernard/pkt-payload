@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
-import { Jost } from 'next/font/google';
-
 import { ThemeProvider as NextThemeProvider } from 'next-themes';
+import { Jost } from 'next/font/google';
 
 import Footer from '@app/components/Footer';
 import Header from '@app/components/Header';

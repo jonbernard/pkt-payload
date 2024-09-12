@@ -1,18 +1,23 @@
 'use client';
 
 import { useMemo } from 'react';
-import { Menu } from '@payload-types';
 
 import { isNumber } from 'lodash';
 
-type ArrayElement<ArrayType> = ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
+import { Menu } from '@payload-types';
+
+type ArrayElement<ArrayType> = ArrayType extends readonly (infer ElementType)[]
+  ? ElementType
+  : never;
 
 const MenuItem = (props: ArrayElement<Menu['items']>) => {
   const { label: passedLabel, newTab, reference, type, url: passedUrl } = props;
 
   const label = useMemo(() => {
     if (type === 'reference' && reference && !isNumber(reference.value)) {
-      return passedLabel && passedLabel !== '' ? passedLabel : reference.value.title || '<<ADD LABEL>>';
+      return passedLabel && passedLabel !== ''
+        ? passedLabel
+        : reference.value.title || '<<ADD LABEL>>';
     }
 
     return passedLabel || '<<ADD LABEL>>';
@@ -21,7 +26,12 @@ const MenuItem = (props: ArrayElement<Menu['items']>) => {
   const url = useMemo(() => {
     let nextUrl = passedUrl || '/';
 
-    if (type === 'reference' && reference && !isNumber(reference.value) && reference.value.slug !== 'home') {
+    if (
+      type === 'reference' &&
+      reference &&
+      !isNumber(reference.value) &&
+      reference.value.slug !== 'home'
+    ) {
       nextUrl = reference.value.url || '/';
     }
 

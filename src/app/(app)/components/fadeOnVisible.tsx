@@ -1,6 +1,7 @@
 'use client';
 
 import { ReactNode, useRef } from 'react';
+
 import classNames from 'classnames';
 
 import { useIsVisible } from '@/hooks/useIsVisible';

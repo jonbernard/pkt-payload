@@ -1,16 +1,16 @@
 import {
+  BlocksFeature,
   FixedToolbarFeature,
   HeadingFeature,
   HorizontalRuleFeature,
   InlineToolbarFeature,
   lexicalEditor,
-  BlocksFeature,
 } from '@payloadcms/richtext-lexical';
 
 import { Banner } from '@/blocks/Banner';
 import { Code } from '@/blocks/Code';
-import { MediaBlock } from '@/blocks/MediaBlock';
 import { Content } from '@/blocks/Content';
+import { MediaBlock } from '@/blocks/MediaBlock';
 import { Video } from '@/blocks/Video';
 
 export const editor = lexicalEditor({

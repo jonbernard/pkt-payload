@@ -1,8 +1,8 @@
 'use client';
 
-import { Pagination as MuiPagination, Stack } from '@mui/material';
-
 import { useRouter } from 'next/navigation';
+
+import { Pagination as MuiPagination, Stack } from '@mui/material';
 
 type Props = {
   page: number;

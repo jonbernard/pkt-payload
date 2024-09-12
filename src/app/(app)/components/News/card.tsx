@@ -1,7 +1,6 @@
 'use client';
 
 import { isNumber } from 'lodash';
-
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -19,10 +18,23 @@ const NewsCard = ({ post }: { post: Post }) => {
         <FadeOnVisible>
           <Card>
             {!isNumber(post.image) && post.image?.url ? (
-              <CardMedia sx={{ height: 175 }} image={post.image.url} title={post.image.text || 'Image'} />
+              <CardMedia
+                sx={{ height: 175 }}
+                image={post.image.url}
+                title={post.image.text || 'Image'}
+              />
             ) : (
-              <Box className="grid place-items-center bg-gray-100 dark:bg-transparent" sx={{ height: 175 }}>
-                <Image src="/coa.png" alt="coa" width={100} height={100} className="grayscale opacity-10 dark:opacity-30" />
+              <Box
+                className="grid place-items-center bg-gray-100 dark:bg-transparent"
+                sx={{ height: 175 }}
+              >
+                <Image
+                  src="/coa.png"
+                  alt="coa"
+                  width={100}
+                  height={100}
+                  className="grayscale opacity-10 dark:opacity-30"
+                />
               </Box>
             )}
             <CardContent>

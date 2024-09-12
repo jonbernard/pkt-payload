@@ -1,8 +1,10 @@
 import React from 'react';
-import { CollectionSlug, DataFromCollectionSlug } from 'payload';
-import { notFound } from 'next/navigation';
 
-import { getPayload } from '../../../utils';
+import { notFound } from 'next/navigation';
+import { CollectionSlug, DataFromCollectionSlug } from 'payload';
+
+import { getPayload } from '@app/utils';
+
 import Client from './client';
 
 type Props = {

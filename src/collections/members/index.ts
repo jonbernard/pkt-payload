@@ -1,7 +1,8 @@
 import { CollectionConfig } from 'payload';
-import { Member } from '@payload-types';
+
 import { admin } from '@/access/admin';
 import { slugField } from '@/fields/slug';
+import { Member } from '@payload-types';
 
 const prefixes = ['Mr', 'Master', 'Miss', 'Mrs', 'Ms', 'Mx', 'Dr', 'Rev', 'Col', 'Cdr', 'Maj', 'Hon', 'Lt'];
 

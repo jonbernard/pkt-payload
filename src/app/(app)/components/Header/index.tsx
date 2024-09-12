@@ -1,13 +1,15 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { Container, Stack } from '@mui/material';
-import classNames from 'classnames';
-import { Menu } from '@payload-types';
-import { isNumber } from 'lodash';
 
+import classNames from 'classnames';
+import { isNumber } from 'lodash';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { Container, Stack } from '@mui/material';
+
+import { Menu } from '@payload-types';
 
 import ThemeToggler from './ThemeToggler';
 import MenuItem from './menuItem';
@@ -65,7 +67,9 @@ const Header = ({ menu: menuData }: { menu: Menu }) => {
                 className={`header-logo w-full ${sticky ? 'py-5 lg:py-2' : 'py-8'} `}
               >
                 <Image src="/coa.png" alt="logo" width={40} height={40} />
-                <span className="whitespace-nowrap font-semibold text-sm sm:text-lg md:text-xl lg:text-2xl">Phi Chapter of Phi Kappa Tau</span>
+                <span className="whitespace-nowrap font-semibold text-sm sm:text-lg md:text-xl lg:text-2xl">
+                  Phi Chapter of Phi Kappa Tau
+                </span>
               </Stack>
             </div>
             <div className="flex w-full items-center justify-end px-4">
@@ -95,11 +99,25 @@ const Header = ({ menu: menuData }: { menu: Menu }) => {
                 <nav
                   id="navbarCollapse"
                   className={`navbar absolute right-0 z-30 w-full md:w-[250px] rounded border-[.5px] border-body-color/50 bg-white lg:!bg-transparent dark:bg-dark lg:dark:!bg-transparent px-6 py-4 duration-300 dark:border-body-color/20 lg:visible lg:static lg:w-auto lg:border-none lg:p-0 lg:opacity-100 ${
-                    navbarOpen ? 'visibility top-6 opacity-100 open' : 'invisible top-[120%] opacity-0'
+                    navbarOpen
+                      ? 'visibility top-6 opacity-100 open'
+                      : 'invisible top-[120%] opacity-0'
                   }`}
                 >
-                  <ul className={classNames('block lg:flex lg:space-x-8', { 'mr-6': !hasLastSubmenu })}>
-                    {menu && menu.map((menuItem, index) => <MenuItem key={menuItem.id} {...menuItem} index={index} onClick={navbarToggleHandler} />)}
+                  <ul
+                    className={classNames('block lg:flex lg:space-x-8', {
+                      'mr-6': !hasLastSubmenu,
+                    })}
+                  >
+                    {menu &&
+                      menu.map((menuItem, index) => (
+                        <MenuItem
+                          key={menuItem.id}
+                          {...menuItem}
+                          index={index}
+                          onClick={navbarToggleHandler}
+                        />
+                      ))}
                   </ul>
                 </nav>
               </div>

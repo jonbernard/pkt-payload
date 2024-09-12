@@ -1,9 +1,8 @@
+import { range } from 'lodash';
+import { revalidatePath } from 'next/cache';
 import type { CollectionAfterChangeHook } from 'payload';
 
-import { revalidatePath } from 'next/cache';
-
 import type { Post } from '@payload-types';
-import _ from 'lodash';
 
 export const revalidateCache: CollectionAfterChangeHook<Post> = async ({ doc, previousDoc, req: { payload } }) => {
   revalidatePath('/');
@@ -34,7 +33,7 @@ export const revalidateCache: CollectionAfterChangeHook<Post> = async ({ doc, pr
     sort: '-updatedAt',
   });
 
-  _.range(1, totalPages + 1).forEach((page) => {
+  range(1, totalPages + 1).forEach((page) => {
     revalidatePath(`/news/page/${page}`);
   });
 

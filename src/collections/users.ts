@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload';
+
 import { admin, fieldAdmin } from '@/access/admin';
 import { authenticated } from '@/access/authenticated';
 

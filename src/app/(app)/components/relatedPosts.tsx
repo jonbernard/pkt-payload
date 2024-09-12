@@ -1,8 +1,9 @@
-// import { Button } from '@mui/material';
-import { Container, Typography } from '@mui/material';
-import { Post } from '@payload-types';
 import { isNumber } from 'lodash';
 import Link from 'next/link';
+
+import { Container, Typography } from '@mui/material';
+
+import { Post } from '@payload-types';
 
 type Props = {
   posts?: Post['relatedLinks'];

@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+
 import { DefaultExtensionType, FileIcon, defaultStyles } from 'react-file-icon';
 
 import { Stack, Typography } from '@mui/material';
@@ -7,7 +8,10 @@ import { SerializedLexicalNode } from './types';
 
 const FileComponent = (content: SerializedLexicalNode) => {
   const name = useMemo(() => content?.value?.text || 'File', [content?.value?.text]);
-  const extension = useMemo((): DefaultExtensionType => content?.value?.url.split('.').pop(), [content?.value?.url]);
+  const extension = useMemo(
+    (): DefaultExtensionType => content?.value?.url.split('.').pop(),
+    [content?.value?.url],
+  );
 
   return (
     <Stack

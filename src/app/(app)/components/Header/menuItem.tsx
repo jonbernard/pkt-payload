@@ -1,21 +1,42 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import classNames from 'classnames';
-import { Menu } from '@payload-types';
 
+import classNames from 'classnames';
+import { isNumber } from 'lodash';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { isNumber } from 'lodash';
 
-type ArrayElement<ArrayType> = ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
+import { Menu } from '@payload-types';
 
-const MenuItem = (props: ArrayElement<Menu['items']> & { onClick: () => void; index: number; isSubmenuItem?: boolean }) => {
-  const { label: passedLabel, onClick, newTab, reference, submenu, type, url: passedUrl, index, isSubmenuItem } = props;
+type ArrayElement<ArrayType> = ArrayType extends readonly (infer ElementType)[]
+  ? ElementType
+  : never;
+
+const MenuItem = (
+  props: ArrayElement<Menu['items']> & {
+    onClick: () => void;
+    index: number;
+    isSubmenuItem?: boolean;
+  },
+) => {
+  const {
+    label: passedLabel,
+    onClick,
+    newTab,
+    reference,
+    submenu,
+    type,
+    url: passedUrl,
+    index,
+    isSubmenuItem,
+  } = props;
 
   const label = useMemo(() => {
     if (type === 'reference' && reference && !isNumber(reference.value)) {
-      return passedLabel && passedLabel !== '' ? passedLabel : reference.value.title || '<<ADD LABEL>>';
+      return passedLabel && passedLabel !== ''
+        ? passedLabel
+        : reference.value.title || '<<ADD LABEL>>';
     }
 
     return passedLabel || '<<ADD LABEL>>';
@@ -24,7 +45,12 @@ const MenuItem = (props: ArrayElement<Menu['items']> & { onClick: () => void; in
   const url = useMemo(() => {
     let nextUrl = passedUrl || '/';
 
-    if (type === 'reference' && reference && !isNumber(reference.value) && reference.value.slug !== 'home') {
+    if (
+      type === 'reference' &&
+      reference &&
+      !isNumber(reference.value) &&
+      reference.value.slug !== 'home'
+    ) {
       nextUrl = reference.value.url || '/';
     }
 
@@ -50,10 +76,14 @@ const MenuItem = (props: ArrayElement<Menu['items']> & { onClick: () => void; in
           href={url}
           onClick={onClick}
           className={classNames(
-            usePathName === url ? 'text-primary dark:text-white' : 'text-dark hover:text-primary dark:text-white/70 dark:hover:text-white',
+            usePathName === url
+              ? 'text-primary dark:text-white'
+              : 'text-dark hover:text-primary dark:text-white/70 dark:hover:text-white',
             {
-              'flex py-4 text-4xl lg:text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6': !isSubmenuItem,
-              'block rounded py-2.5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white lg:px-3': isSubmenuItem,
+              'flex py-4 text-4xl lg:text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6':
+                !isSubmenuItem,
+              'block rounded py-2.5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white lg:px-3':
+                isSubmenuItem,
             },
           )}
           {...(newTab
@@ -88,7 +118,13 @@ const MenuItem = (props: ArrayElement<Menu['items']> & { onClick: () => void; in
             }`}
           >
             {submenu?.map((submenuItem, index) => (
-              <MenuItem key={index} {...submenuItem} index={index} onClick={onClick} isSubmenuItem />
+              <MenuItem
+                key={index}
+                {...submenuItem}
+                index={index}
+                onClick={onClick}
+                isSubmenuItem
+              />
             ))}
           </ul>
         </>

@@ -1,8 +1,8 @@
+import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
-import { Member } from '@payload-types';
-import { cookies } from 'next/headers';
 import { getPayload } from '@/app/(app)/utils';
+import { Member } from '@payload-types';
 
 const payload = await getPayload();
 

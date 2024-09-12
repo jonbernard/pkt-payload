@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
-import Hero from '@/components/hero';
 
 import News from '@/components/News';
+import Hero from '@/components/hero';
 import Pagination from '@/components/pagination';
 import { getPayload } from '@app/utils';
 
