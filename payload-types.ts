@@ -252,7 +252,7 @@ export interface Post {
   metaDescription?: string | null;
   categories?: (number | Category)[] | null;
   publishedAt?: string | null;
-  image?: number | Media | null;
+  image?: (number | null) | Media;
   authors?: (number | User)[] | null;
   populatedAuthors?:
     | {

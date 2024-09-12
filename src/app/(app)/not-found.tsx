@@ -2,7 +2,6 @@ import CallToAction from './components/CallToAction';
 import Hero from './components/hero';
 import News from './components/News';
 import ScrollUp from './components/ScrollUp';
-// import RootLayout from './layout';
 import { getPayload } from './utils';
 
 export default async function NotFound() {

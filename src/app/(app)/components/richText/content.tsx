@@ -1,7 +1,8 @@
-import { SerializedLexicalNode } from './types';
-import Content from '.';
 import { Stack } from '@mui/material';
 import classNames from 'classnames';
+
+import { SerializedLexicalNode } from './types';
+import Content from '.';
 
 const ContentBlock = (content: SerializedLexicalNode) => {
   return (

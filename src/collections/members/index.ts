@@ -514,8 +514,8 @@ export const Members: CollectionConfig = {
       type: 'array',
       admin: {
         components: {
-          RowLabel: ({ data }) => {
-            return data?.name || `Spouse`;
+          RowLabel: {
+            path: 'src/collections/members/components/spouseRowLabel.ts',
           },
         },
       },
@@ -540,8 +540,8 @@ export const Members: CollectionConfig = {
       type: 'array',
       admin: {
         components: {
-          RowLabel: ({ data, index }) => {
-            return data?.name || `Child ${String(index).padStart(2, '0')}`;
+          RowLabel: {
+            path: 'src/collections/members/components/childrenRowLabel.ts',
           },
         },
       },

@@ -19,9 +19,6 @@ import { Media } from '@/collections/media';
 import { Menus } from '@/collections/menus';
 import { Members } from '@/collections/members';
 
-import { Logo } from '@payload/components/graphics/Logo';
-import { Icon } from '@payload/components/graphics/Icon';
-
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -32,8 +29,12 @@ export default buildConfig({
     // Add your own logo and icon here
     components: {
       graphics: {
-        Icon,
-        Logo,
+        Icon: {
+          path: 'src/app/(payload)/components/graphics/Icon/index.tsx',
+        },
+        Logo: {
+          path: 'src/app/(payload)/components/graphics/Logo/index.tsx',
+        },
       },
     },
     // Add your own meta data here
@@ -43,8 +44,13 @@ export default buildConfig({
       titleSuffix: '- Phi Chapter of the Phi Kappa Tau Fraternity',
     },
   },
-  editor: lexicalEditor(),
   collections: [Members, Posts, Pages, Categories, Menus, Media, Users],
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.POSTGRES_URL || '',
+    },
+  }),
+  editor: lexicalEditor(),
   email: nodemailerAdapter({
     defaultFromAddress: 'email@pktphichapter.org',
     defaultFromName: 'Phi Chapter of Phi Kappa Tau',
@@ -54,15 +60,6 @@ export default buildConfig({
         apiKey: sendGridAPIKey,
       }),
     ),
-  }),
-  secret: process.env.PAYLOAD_SECRET || '',
-  typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
-  },
-  db: postgresAdapter({
-    pool: {
-      connectionString: process.env.POSTGRES_URL || '',
-    },
   }),
   i18n: {
     supportedLanguages: { en },
@@ -85,7 +82,6 @@ export default buildConfig({
       });
     }
   },
-  sharp,
   plugins: [
     vercelBlobStorage({
       collections: {
@@ -94,4 +90,9 @@ export default buildConfig({
       token: process.env.BLOB_READ_WRITE_TOKEN || '',
     }),
   ],
+  secret: process.env.PAYLOAD_SECRET || '',
+  typescript: {
+    outputFile: path.resolve(dirname, 'payload-types.ts'),
+  },
+  sharp,
 });

@@ -2,12 +2,6 @@
   "folders": [
     {
       "path": "."
-    },
-    {
-      "path": "../../Downloads/payload-3.0.0-beta.65"
-    },
-    {
-      "path": "../../Downloads/startup-nextjs-main"
     }
   ],
   "settings": {

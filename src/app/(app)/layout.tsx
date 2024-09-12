@@ -6,8 +6,6 @@ import { ThemeProvider as NextThemeProvider } from 'next-themes';
 import Footer from '@app/components/Footer';
 import Header from '@app/components/Header';
 
-import 'node_modules/react-modal-video/css/modal-video.css';
-
 import { Providers } from './providers';
 import './styles/index.css';
 import { getPayload } from './utils';

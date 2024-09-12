@@ -7,13 +7,9 @@ This repo showcases a demo of the Payload 3.0 Beta running completely within Nex
 >
 > We're actively working toward a stable release as fast as we possibly can.
 
-### Quick Start
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjonbernard%2Fpkt-payload&project-name=pkt-payload&env=PAYLOAD_SECRET&build-command=yarn%20ci&stores=%5B%7B%22type%22%3A%22postgres%22%7D%2C%7B%22type%22%3A%22blob%22%7D%5D)
-
 ### Highlights
 
-1. Payload is now Next.js-nativ
+1. Payload is now Next.js-native
 1. Turbopack works out of the box (this will get faster over time, expect more here)
 1. The Payload admin UI is built with React Server Components and automatically eliminates server-side code from your admin bundle, completely alleviating the need to use Webpack aliases to remove hooks, access control, etc.
 1. Payload is now fully-ESM across the board
