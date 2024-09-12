@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { ThemeProvider as NextThemeProvider } from 'next-themes';
 import { Jost } from 'next/font/google';
+import Script from 'next/script';
 
 import Footer from '@app/components/Footer';
 import Header from '@app/components/Header';
@@ -80,6 +81,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             {/* <ScrollToTop /> */}
           </Providers>
         </NextThemeProvider>
+        <Script async src="https://js.stripe.com/v3/buy-button.js" />
       </body>
     </html>
   );

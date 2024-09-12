@@ -2,8 +2,7 @@ import React from 'react';
 
 import { Container } from '@mui/material';
 
-import Banner from './banner';
-import ContentBlock from './content';
+import BlockContent from './block';
 import DefaultComponent from './default';
 import FileComponent from './file';
 import HorizontalRule from './horizontalRule';
@@ -12,7 +11,6 @@ import Paragraph from './paragraph';
 import Quote from './quote';
 import Relationship from './relationship';
 import { SerializedLexicalNode } from './types';
-import Video from './video';
 
 const smallSizeTypes = ['relationship', 'upload'];
 
@@ -25,7 +23,7 @@ const Content = ({
 }) => {
   const render = () => {
     if (data.type === 'paragraph') return <Paragraph {...data} />;
-    if (data.type === 'block' && data.fields.blockType === 'banner') return <Banner {...data} />;
+    if (data.type === 'block') return <BlockContent {...data} />;
     if (data.type === 'horizontalrule') return <HorizontalRule {...data} />;
     if (data.type === 'relationship') return <Relationship {...data} />;
     if (data.type === 'quote') return <Quote {...data} />;
@@ -37,20 +35,11 @@ const Content = ({
       return <FileComponent {...data} />;
 
     if (
-      (data.type === 'block' &&
-        data.fields?.blockType === 'mediaBlock' &&
-        data.fields?.media?.mimeType?.includes('image')) ||
-      (data.type === 'upload' &&
-        data.relationTo === 'media' &&
-        data.value?.mimeType?.includes('image'))
+      data.type === 'upload' &&
+      data.relationTo === 'media' &&
+      data.value?.mimeType?.includes('image')
     ) {
       return <Image {...data} />; // eslint-disable-line jsx-a11y/alt-text
-    }
-    if (data.type === 'block' && data.fields.blockType === 'content') {
-      return <ContentBlock {...data} />; // eslint-disable-line jsx-a11y/alt-text
-    }
-    if (data.type === 'block' && data.fields.blockType === 'video') {
-      return <Video {...data} />; // eslint-disable-line jsx-a11y/alt-text
     }
 
     if (['heading', 'list'].includes(data.type)) return <DefaultComponent {...data} />;
