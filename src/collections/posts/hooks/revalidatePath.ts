@@ -1,10 +1,14 @@
-import { range } from 'lodash';
+import range from 'lodash/range';
 import { revalidatePath } from 'next/cache';
 import type { CollectionAfterChangeHook } from 'payload';
 
 import type { Post } from '@payload-types';
 
-export const revalidateCache: CollectionAfterChangeHook<Post> = async ({ doc, previousDoc, req: { payload } }) => {
+export const revalidateCache: CollectionAfterChangeHook<Post> = async ({
+  doc,
+  previousDoc,
+  req: { payload },
+}) => {
   revalidatePath('/');
   revalidatePath('/news');
 
