@@ -65,6 +65,7 @@ const Content = ({
         data.type === 'heading' ? `heading-${data.tag}` : '',
         blockClasses[`${data?.type}-${data?.fields?.blockType}-${data?.fields?.type}`],
       )}
+      sx={{ lineHeight: 1.8 }}
       data-blocktype={data.type}
     >
       {render()}
