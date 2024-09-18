@@ -57,7 +57,7 @@ const ImageComponent = (content: SerializedLexicalNode) => {
       <>
         <div
           className={classNames(
-            'w-full md:w-1/2 lg:w-1/3 p-4 space-y-2 clear-both',
+            'w-full md:w-1/2 lg:w-1/3 p-4 space-y-2',
             content?.fields?.position === 'left' ? 'float-left' : 'float-right',
           )}
         >

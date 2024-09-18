@@ -61,6 +61,7 @@ const Content = ({
     <Container
       maxWidth={smallSizeTypes.includes(data.type) ? 'sm' : 'lg'}
       className={classNames(
+        'clear-both',
         data.type === 'heading' ? `heading-${data.tag}` : '',
         blockClasses[`${data?.type}-${data?.fields?.blockType}-${data?.fields?.type}`],
       )}
