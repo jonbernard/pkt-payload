@@ -6,7 +6,6 @@ import { Button, Card, CardContent, Stack } from '@mui/material';
 import { SerializedLexicalNode } from './types';
 
 const PaymentLinkBlock = (content: SerializedLexicalNode) => {
-  console.log('JB | PaymentLinkBlock | content:', content);
   const renderInline = (direction: 'row' | 'column' = 'row', invertColor = false) => {
     const defaultLabel = content.fields.paymentLink.submitType;
 

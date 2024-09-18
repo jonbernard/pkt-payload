@@ -16,7 +16,6 @@ export const createPaymentLink = async (
   redirectUrl: string,
   linkParams: Partial<Stripe.PaymentLinkCreateParams> = {},
 ) => {
-  console.log('JB | productParams:', productParams);
   const productPromises = productParams.map(async (product) => ({
     product,
     stripeProduct: await stripe.products.create(omit(product, 'price')),
@@ -48,7 +47,6 @@ export const createPaymentLink = async (
       NODE_ENV: process.env.NODE_ENV,
     },
   };
-  console.log('JB | payload:', payload);
 
   const paymentLink: Stripe.PaymentLink = await stripe.paymentLinks.create(payload);
 
@@ -57,8 +55,6 @@ export const createPaymentLink = async (
 
 export const updatePaymentLink = async (id: string, params: Stripe.PaymentLinkUpdateParams) => {
   const paymentLink: Stripe.PaymentLink = await stripe.paymentLinks.update(id, params);
-
-  console.log('update', paymentLink);
 
   return paymentLink;
 };
