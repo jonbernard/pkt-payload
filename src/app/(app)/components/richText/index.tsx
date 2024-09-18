@@ -1,5 +1,7 @@
 import React from 'react';
 
+import classNames from 'classnames';
+
 import { Container } from '@mui/material';
 
 import BlockContent from './block';
@@ -13,6 +15,10 @@ import Relationship from './relationship';
 import { SerializedLexicalNode } from './types';
 
 const smallSizeTypes = ['relationship', 'upload'];
+
+const blockClasses: Record<string, boolean> = {
+  'block-paymentLinkBlock-fullscreen': true,
+};
 
 const Content = ({
   data,
@@ -47,12 +53,17 @@ const Content = ({
     return <span>Content unavailable</span>;
   };
 
-  if (excludeContainer) return render();
+  const blockClass = blockClasses[`${data?.type}-${data?.fields?.blockType}-${data?.fields?.type}`];
+
+  if (excludeContainer || blockClass) return render();
 
   return (
     <Container
       maxWidth={smallSizeTypes.includes(data.type) ? 'sm' : 'lg'}
-      className={data.type === 'heading' ? `heading-${data.tag}` : ''}
+      className={classNames(
+        data.type === 'heading' ? `heading-${data.tag}` : '',
+        blockClasses[`${data?.type}-${data?.fields?.blockType}-${data?.fields?.type}`],
+      )}
       data-blocktype={data.type}
     >
       {render()}

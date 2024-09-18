@@ -27,6 +27,22 @@ export type Children =
       id?: string | null;
     }[]
   | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Products".
+ */
+export type Products =
+  | {
+      name?: string | null;
+      description?: string | null;
+      images?: string[] | null;
+      customPrice?: boolean | null;
+      value?: number | null;
+      productId?: string | null;
+      priceId?: string | null;
+      id?: string | null;
+    }[]
+  | null;
 
 export interface Config {
   auth: {
@@ -37,6 +53,7 @@ export interface Config {
     posts: Post;
     pages: Page;
     categories: Category;
+    paymentLinks: PaymentLink;
     menus: Menu;
     media: Media;
     users: User;
@@ -325,6 +342,22 @@ export interface Page {
 export interface Category {
   id: number;
   title?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "paymentLinks".
+ */
+export interface PaymentLink {
+  id: number;
+  title?: string | null;
+  type?: 'donate' | null;
+  paymentLinkId?: string | null;
+  paymentLinkUrl?: string | null;
+  products?: Products;
+  submitType?: ('book' | 'donate' | 'pay') | null;
+  redirect: string;
   updatedAt: string;
   createdAt: string;
 }

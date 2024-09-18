@@ -9,7 +9,7 @@ import {
 } from '@payloadcms/richtext-lexical';
 
 import { MediaBlock } from '../MediaBlock';
-import { Payments } from '../Payments';
+import { PaymentLinkBlocks } from '../PaymentLink';
 import { Video } from '../Video';
 
 const columnFields: Field[] = [
@@ -48,7 +48,7 @@ const columnFields: Field[] = [
         return [
           ...rootFeatures,
           HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
-          BlocksFeature({ blocks: [Payments, MediaBlock, Video] }),
+          BlocksFeature({ blocks: [PaymentLinkBlocks, MediaBlock, Video] }),
           FixedToolbarFeature(),
           InlineToolbarFeature(),
         ];

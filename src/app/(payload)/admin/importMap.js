@@ -25,8 +25,9 @@ import { LinkFeatureClient as LinkFeatureClient_23 } from '@payloadcms/richtext-
 import { RelationshipFeatureClient as RelationshipFeatureClient_24 } from '@payloadcms/richtext-lexical/client'
 import { BlockquoteFeatureClient as BlockquoteFeatureClient_25 } from '@payloadcms/richtext-lexical/client'
 import { UploadFeatureClient as UploadFeatureClient_26 } from '@payloadcms/richtext-lexical/client'
-import { default as default_27 } from 'src/app/(payload)/components/graphics/Icon/index.tsx'
-import { default as default_28 } from 'src/app/(payload)/components/graphics/Logo/index.tsx'
+import { default as default_27 } from 'src/collections/paymentLinks/copyButton.tsx'
+import { default as default_28 } from 'src/app/(payload)/components/graphics/Icon/index.tsx'
+import { default as default_29 } from 'src/app/(payload)/components/graphics/Logo/index.tsx'
 
 export const importMap = {
   "src/collections/members/components/spouseRowLabel.ts#default": default_0,
@@ -56,6 +57,7 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#RelationshipFeatureClient": RelationshipFeatureClient_24,
   "@payloadcms/richtext-lexical/client#BlockquoteFeatureClient": BlockquoteFeatureClient_25,
   "@payloadcms/richtext-lexical/client#UploadFeatureClient": UploadFeatureClient_26,
-  "src/app/(payload)/components/graphics/Icon/index.tsx#default": default_27,
-  "src/app/(payload)/components/graphics/Logo/index.tsx#default": default_28
+  "src/collections/paymentLinks/copyButton.tsx#default": default_27,
+  "src/app/(payload)/components/graphics/Icon/index.tsx#default": default_28,
+  "src/app/(payload)/components/graphics/Logo/index.tsx#default": default_29
 }

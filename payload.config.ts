@@ -1,23 +1,24 @@
-import path from 'path';
-import { postgresAdapter } from '@payloadcms/db-postgres';
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
-import { en } from 'payload/i18n/en';
-import { lexicalEditor } from '@payloadcms/richtext-lexical';
-import nodemailerSendgrid from 'nodemailer-sendgrid';
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
-import { buildConfig } from 'payload';
 import nodemailer from 'nodemailer';
-
+import nodemailerSendgrid from 'nodemailer-sendgrid';
+import path from 'path';
+import { buildConfig } from 'payload';
+import { en } from 'payload/i18n/en';
 import sharp from 'sharp';
 import { fileURLToPath } from 'url';
 
+import { postgresAdapter } from '@payloadcms/db-postgres';
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
+import { lexicalEditor } from '@payloadcms/richtext-lexical';
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
+
 import { Categories } from '@/collections/categories';
-import { Users } from '@/collections/users';
-import { Pages } from '@/collections/pages';
-import { Posts } from '@/collections/posts';
 import { Media } from '@/collections/media';
-import { Menus } from '@/collections/menus';
 import { Members } from '@/collections/members';
+import { Menus } from '@/collections/menus';
+import { Pages } from '@/collections/pages';
+import { PaymentLinks } from '@/collections/paymentLinks';
+import { Posts } from '@/collections/posts';
+import { Users } from '@/collections/users';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -44,7 +45,7 @@ export default buildConfig({
       titleSuffix: '- Phi Chapter of the Phi Kappa Tau Fraternity',
     },
   },
-  collections: [Members, Posts, Pages, Categories, Menus, Media, Users],
+  collections: [Members, Posts, Pages, Categories, PaymentLinks, Menus, Media, Users],
   db: postgresAdapter({
     pool: {
       connectionString: process.env.POSTGRES_URL || '',

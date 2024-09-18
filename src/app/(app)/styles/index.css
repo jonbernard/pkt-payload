@@ -16,7 +16,7 @@ p {
 }
 
 #content {
-  a {
+  a:not(.MuiButton-root) {
     border-bottom: 1px dotted currentColor;
     text-decoration: none;
   }
