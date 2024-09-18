@@ -12,14 +12,16 @@ export const renderPageBody = (body?: SerializedLexicalNode[]) => {
     return (
       <>
         <ContentComponent data={body[0]} />
-        <section
-          id="content"
-          className="dark:bg-gray-800 bg-gray-50 py-12 border-y border-solid border-gray-300 dark:border-gray-700 space-y-8"
-        >
-          {[...body.slice(1)]?.map((node, index) => (
-            <ContentComponent key={index} data={node} />
-          ))}
-        </section>
+        {[...body.slice(1)].length > 0 && (
+          <section
+            id="content"
+            className="dark:bg-gray-800 bg-gray-50 py-12 border-y border-solid border-gray-300 dark:border-gray-700 space-y-8"
+          >
+            {[...body.slice(1)]?.map((node, index) => (
+              <ContentComponent key={index} data={node} />
+            ))}
+          </section>
+        )}
       </>
     );
   }
