@@ -11,6 +11,7 @@ import {
 import { MediaBlock } from '../MediaBlock';
 import { PaymentLinkBlocks } from '../PaymentLink';
 import { Video } from '../Video';
+import { editorFeatures } from './editor';
 
 const columnFields: Field[] = [
   {
@@ -45,13 +46,7 @@ const columnFields: Field[] = [
     type: 'richText',
     editor: lexicalEditor({
       features: ({ rootFeatures }) => {
-        return [
-          ...rootFeatures,
-          HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
-          BlocksFeature({ blocks: [PaymentLinkBlocks, MediaBlock, Video] }),
-          FixedToolbarFeature(),
-          InlineToolbarFeature(),
-        ];
+        return [...rootFeatures, ...editorFeatures()];
       },
     }),
     label: false,

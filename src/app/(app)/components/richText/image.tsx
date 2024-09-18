@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import { useMemo } from 'react';
@@ -7,6 +6,7 @@ import classNames from 'classnames';
 
 import { Box } from '@mui/material';
 
+import Content from '.';
 import { SerializedLexicalNode } from './types';
 
 /* eslint-disable @next/next/no-img-element */
@@ -49,6 +49,27 @@ const ImageComponent = (content: SerializedLexicalNode) => {
           className="w-full"
         />
       </div>
+    );
+  }
+
+  if (['left', 'right'].includes(content?.fields?.position)) {
+    return (
+      <>
+        <div
+          className={classNames(
+            'w-full md:w-1/2 lg:w-5/12 p-4 space-y-2',
+            content?.fields?.position === 'left' ? 'float-left' : 'float-right',
+          )}
+        >
+          <img src={url} alt={text} className="w-full" />
+          {content?.fields?.media?.text && <p className="italic">{content.fields.media.text}</p>}
+        </div>
+        {content?.fields.richText?.root?.children &&
+          content?.fields.richText?.root?.children.map(
+            (content: any, index: number) =>
+              content && <Content key={index} data={content} excludeContainer />,
+          )}
+      </>
     );
   }
 
