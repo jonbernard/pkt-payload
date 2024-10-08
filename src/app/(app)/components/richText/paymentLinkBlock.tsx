@@ -8,6 +8,10 @@ import { SerializedLexicalNode } from './types';
 const PaymentLinkBlock = (content: SerializedLexicalNode) => {
   const renderInline = (direction: 'row' | 'column' = 'row', invertColor = false) => {
     const defaultLabel = content.fields.paymentLink.submitType;
+    const useLink = content.fields.paymentLink.useLink;
+    const link = useLink
+      ? content.fields.paymentLink.link
+      : content.fields.paymentLink.paymentLinkUrl;
 
     return (
       <Stack
@@ -27,7 +31,8 @@ const PaymentLinkBlock = (content: SerializedLexicalNode) => {
         </div>
         <Button
           LinkComponent={Link}
-          href={content.fields.paymentLink.paymentLinkUrl}
+          href={link}
+          target={!useLink ? '_self' : '_blank'}
           variant="contained"
           className={classNames(
             'whitespace-nowrap shrink-0',

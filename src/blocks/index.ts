@@ -14,12 +14,16 @@ import { MediaBlock } from '@/blocks/MediaBlock';
 import { PaymentLinkBlocks } from '@/blocks/PaymentLink';
 import { Video } from '@/blocks/Video';
 
+import { Embed } from './Embed';
+
 export const editor = lexicalEditor({
   features: ({ rootFeatures }) => {
     return [
       ...rootFeatures,
       HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-      BlocksFeature({ blocks: [Content, Banner, Code, MediaBlock, Video, PaymentLinkBlocks] }),
+      BlocksFeature({
+        blocks: [Content, Banner, Code, Embed, MediaBlock, Video, PaymentLinkBlocks],
+      }),
       FixedToolbarFeature(),
       InlineToolbarFeature(),
       HorizontalRuleFeature(),

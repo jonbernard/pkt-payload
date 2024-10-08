@@ -10,7 +10,7 @@ const beforeChangeHook: CollectionBeforeChangeHook<PaymentLink> = async ({
   data, // incoming data to update or create with
   // operation, // name of the operation ie. 'create', 'update'
 }) => {
-  if (!data.paymentLinkId && data.products) {
+  if (!data.useLink && !data.paymentLinkId && data.products) {
     const { paymentLink, products } = await createPaymentLink(
       data.products.map((product) => ({
         name: product.name || 'Donation',
@@ -83,9 +83,24 @@ export const PaymentLinks: CollectionConfig = {
       ],
     },
     {
+      name: 'useLink',
+      type: 'checkbox',
+      defaultValue: false,
+      label: 'Use url to redirect user',
+    },
+    {
+      name: 'link',
+      type: 'text',
+      label: 'Link',
+      admin: {
+        condition: (data) => data?.useLink === true,
+      },
+    },
+    {
       name: 'paymentLinkId',
       type: 'text',
       admin: {
+        condition: (data) => data?.useLink === false,
         position: 'sidebar',
         readOnly: true,
         components: {
@@ -101,6 +116,7 @@ export const PaymentLinks: CollectionConfig = {
       name: 'paymentLinkUrl',
       type: 'text',
       admin: {
+        condition: (data) => data?.useLink === false,
         position: 'sidebar',
         readOnly: true,
         components: {
@@ -161,6 +177,9 @@ export const PaymentLinks: CollectionConfig = {
       ],
       interfaceName: 'Products',
       label: 'Products',
+      admin: {
+        condition: (data) => data?.useLink === false,
+      },
     },
     {
       name: 'submitType',
@@ -180,12 +199,17 @@ export const PaymentLinks: CollectionConfig = {
           value: 'pay',
         },
       ],
+      admin: {
+        condition: (data) => data?.useLink === false,
+      },
     },
     {
       name: 'redirect',
       type: 'text',
       label: 'Redirect URL',
-      required: true,
+      admin: {
+        condition: (data) => data?.useLink === false,
+      },
     },
   ],
 };

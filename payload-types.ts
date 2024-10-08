@@ -353,11 +353,13 @@ export interface PaymentLink {
   id: number;
   title?: string | null;
   type?: 'donate' | null;
+  useLink?: boolean | null;
+  link?: string | null;
   paymentLinkId?: string | null;
   paymentLinkUrl?: string | null;
   products?: Products;
   submitType?: ('book' | 'donate' | 'pay') | null;
-  redirect: string;
+  redirect?: string | null;
   updatedAt: string;
   createdAt: string;
 }
