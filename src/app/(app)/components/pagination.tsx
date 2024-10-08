@@ -1,5 +1,6 @@
 'use client';
 
+import classNames from 'classnames';
 import { useRouter } from 'next/navigation';
 
 import { Pagination as MuiPagination, Stack } from '@mui/material';
@@ -8,9 +9,10 @@ type Props = {
   page: number;
   count: number;
   createUrl: string;
+  className?: string;
 };
 
-const Pagination = ({ page, count, createUrl }: Props) => {
+const Pagination = ({ page, count, createUrl, className }: Props) => {
   const router = useRouter();
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
@@ -20,7 +22,10 @@ const Pagination = ({ page, count, createUrl }: Props) => {
   };
 
   return (
-    <Stack alignItems="center" className="dark:bg-gray-dark bg-white text-center">
+    <Stack
+      alignItems="center"
+      className={classNames('dark:bg-gray-dark bg-white text-center', className)}
+    >
       <MuiPagination count={count} page={page} onChange={handleChange} />
     </Stack>
   );
