@@ -1,7 +1,16 @@
 import { CollectionConfig } from 'payload';
 
+import { admin } from '@/access/admin';
+import { anyone } from '@/access/anyone';
+
 export const Media: CollectionConfig = {
   slug: 'media',
+  access: {
+    create: admin,
+    delete: admin,
+    read: anyone,
+    update: admin,
+  },
   upload: {
     staticDir: 'media',
     imageSizes: [

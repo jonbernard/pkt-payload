@@ -35,7 +35,7 @@ const PaymentLinkBlock = (content: SerializedLexicalNode) => {
           )}
         >
           {content.fields.linkText ||
-            `${defaultLabel.charAt(0).toUpperCase()}${defaultLabel.slice(1)}`}
+            `${defaultLabel?.charAt(0)?.toUpperCase()}${defaultLabel?.slice(1)}`}
         </Button>
       </Stack>
     );
