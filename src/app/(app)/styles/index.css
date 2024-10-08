@@ -16,7 +16,7 @@ p {
 }
 
 #content {
-  a:not(.MuiButton-root) {
+  a:not(.MuiButton-root):not(.disableLinkStyles) {
     border-bottom: 1px dotted currentColor;
     text-decoration: none;
   }

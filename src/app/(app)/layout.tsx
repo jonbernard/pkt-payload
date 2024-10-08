@@ -82,13 +82,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           </Providers>
         </NextThemeProvider>
         <Script async src="https://js.stripe.com/v3/buy-button.js" />
-        <div id="fb-root"></div>
-        <Script
-          async
-          defer
-          crossOrigin="anonymous"
-          src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v21.0&appId=193476223998315"
-        />
       </body>
     </html>
   );

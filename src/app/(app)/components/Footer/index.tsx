@@ -31,9 +31,6 @@ const Footer = ({ menus }: { menus: Menu[] }) => {
                 <div className="text-sm">Bethany College | Bethany, West Virginia</div>
               </div>
             </Stack>
-            {/* <p className="dark:text-body-color-dark mb-9 text-base leading-relaxed text-body-color">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lobortis.
-            </p> */}
             <div className="flex items-center">
               <a
                 href="https://www.facebook.com/groups/pktphichapter/"
@@ -45,7 +42,7 @@ const Footer = ({ menus }: { menus: Menu[] }) => {
                 </svg>
               </a>
               <a
-                href="https://www.instagram.com/phikappatau/"
+                href="https://www.instagram.com/bc_phitau/"
                 aria-label="social-link"
                 className="dark:text-body-color-dark mr-6 text-body-color duration-300 hover:text-primary dark:hover:text-yellow"
               >

@@ -4,6 +4,7 @@ import Banner from './banner';
 import ContentBlock from './content';
 import Embed from './embed';
 import Image from './image';
+import LinkList from './linkList';
 import PaymentLinkBlock from './paymentLinkBlock';
 import Payments from './payments';
 import { SerializedLexicalNode } from './types';
@@ -21,6 +22,7 @@ const BlockContent = (props: SerializedLexicalNode) => {
   if (props.fields.blockType === 'content') return <ContentBlock {...props} />;
   if (props.fields.blockType === 'video') return <Video {...props} />;
   if (props.fields.blockType === 'embed') return <Embed {...props} />;
+  if (props.fields.blockType === 'linkList') return <LinkList {...props} />;
   if (props.fields.blockType === 'payments') return <Payments {...props} />;
 
   return <span data-blocktype={props.fields.blockType}>Block content unavailable</span>;
