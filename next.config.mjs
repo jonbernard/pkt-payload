@@ -31,6 +31,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'pktphichapter.org',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.pktphichapter.org',
+      },
     ],
   },
   modularizeImports: {
