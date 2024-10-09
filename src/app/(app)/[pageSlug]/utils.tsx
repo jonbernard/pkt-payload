@@ -26,7 +26,7 @@ export const renderPageBody = (body?: SerializedLexicalNode[]) => {
     );
   }
 
-  if (body && (body.length > 1 || (body[0]?.children?.length || 0) > 0)) {
+  if (body && body.length > 0) {
     return (
       <section
         id="content"

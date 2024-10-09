@@ -76,14 +76,11 @@ const MenuItem = (
           href={url}
           onClick={onClick}
           className={classNames(
-            usePathName === url
-              ? 'text-primary dark:text-white'
-              : 'text-dark hover:text-primary dark:text-white/70 dark:hover:text-white',
+            'text-dark hover:text-primary dark:text-white/70 dark:hover:text-white',
             {
-              'flex py-4 text-4xl lg:text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6':
+              'flex py-4 text-3xl md:text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6':
                 !isSubmenuItem,
-              'block rounded py-2.5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white lg:px-3':
-                isSubmenuItem,
+              'block rounded text-xl md:text-base py-2.5 lg:px-3': isSubmenuItem,
             },
           )}
           {...(newTab
@@ -98,7 +95,7 @@ const MenuItem = (
         <>
           <p
             onClick={() => handleSubmenu(index)}
-            className="flex cursor-pointer items-center justify-between py-2 text-base text-dark group-hover:text-primary dark:text-white/70 dark:group-hover:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6"
+            className="flex cursor-pointer items-center justify-between py-2 text-3xl md:text-base text-dark group-hover:text-primary dark:text-white/70 dark:group-hover:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6"
           >
             {label}
             <span className="pl-3">
