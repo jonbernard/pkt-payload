@@ -16,6 +16,7 @@ import { Video } from '@/blocks/Video';
 
 import { Embed } from './Embed';
 import { LinkList } from './LinkList';
+import { Social } from './Social';
 
 export const editor = lexicalEditor({
   features: ({ rootFeatures }) => {
@@ -23,7 +24,17 @@ export const editor = lexicalEditor({
       ...rootFeatures,
       HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
       BlocksFeature({
-        blocks: [Content, Banner, Code, Embed, LinkList, MediaBlock, Video, PaymentLinkBlocks],
+        blocks: [
+          Content,
+          Banner,
+          Code,
+          Embed,
+          LinkList,
+          MediaBlock,
+          Social,
+          Video,
+          PaymentLinkBlocks,
+        ],
       }),
       FixedToolbarFeature(),
       InlineToolbarFeature(),
